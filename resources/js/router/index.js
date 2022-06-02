@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Login from '../Pages/Login'
+import TheContainer from '../layout/TheContainer'
 
 
 
@@ -12,6 +13,11 @@ const routes = [
 		path: "/login",
 		name: "login",
 		component: Login ,
+	},
+	{
+			path: "/",
+			name: "dashboard",
+			component: TheContainer,
 	}
 ]
 const router = new VueRouter({
@@ -22,7 +28,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 	if (to.name=='login') {
-        next()
+        next({name: 'dashboard'})
     }
 	else
 	{

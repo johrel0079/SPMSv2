@@ -6,7 +6,7 @@
                     <div class="card border-0" style="background:transparent">
                         <b-row>
                             <b-col class="d-flex justify-content-center">
-                                 <b-img :src="'images/avatar.png'" class="image__pc"></b-img>
+                                 <!-- <b-img :src="'images/avatar.png'" class="image__pc"></b-img> -->
                             </b-col>
                         </b-row>
                         <b-row class="d-flex justify-content-center">

@@ -1,0 +1,77 @@
+@import "colors";
+@import "mediascreens";
+@import "cross_settings";
+
+*,
+html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    font-family: 'PoppinsRegular';
+}
+
+body {
+    overflow-x: hidden;
+}
+
+thead {
+   font-size:11px!important;
+}
+
+tr {
+    font-size:13px!important;
+ }
+
+ .modal-header
+ {
+     background-color: $red!important;
+     color:$gray;
+ }
+ .close
+ {
+     color:$gray!important;
+ }
+
+ .text-muted
+ {
+     color:hsl(214, 7%, 47%)!important;
+
+ }
+
+ th
+ {
+     font-size:12px;
+     font-weight:semibold;
+     color:#4A4A4A;
+     text-transform: uppercase;
+     padding:15px;
+ }
+
+ tr
+ {
+     text-align: left;
+    //  padding:15px;
+     border-top: #E6E6E6;
+ }
+.circle-icons
+{
+    display:inline-flex;
+    padding:10px;
+    border-radius:50%;
+    background-color:#e84656;
+    color:white
+}
+
+.page-item.active .page-link
+{
+    background-color: #A30B1A;
+    border-color: #A30B1A;
+}
+
+.page-link
+{
+    color: #A30B1A;
+}
