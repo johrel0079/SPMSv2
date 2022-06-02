@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
     name: "login",
     data() {
@@ -61,6 +62,9 @@ export default {
       }
     },
     methods: {
+      ...mapActions({
+        loginState:'auth/login'
+      }),
      async submitLoginForm(){
         var data = {
           employee_number: this.employee_number,
@@ -70,7 +74,7 @@ export default {
       await this.$http.get('sanctum/csrf-cookie');  
       await this.$http.post('api/login', data)
       .then((response) => {
-        console.log(response)
+        this.loginState(response.data);
       }).catch((response) => {
         console.log(response);
       })
