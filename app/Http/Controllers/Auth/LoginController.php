@@ -20,24 +20,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    public function login(Request $request){
-        $credentials = $request->validate([
-            'employee_number'   => 'required|exists:users,employee_number',
-            'password'          => 'required'
-        ]);
 
-        $user = User::where('employee_number', $request->employee_number)->first();
-
-        if(!user){
-            return $this->errorResponse('Unauthorized');
-        }
-
-        if(Auth::attempt($credentials)){
-            $token = $user->createToken('token')->plainTextToken;
-            return $this->returnResponse($token);
-        }
-        return $this->errorResponse('Unauthorized');
-    }
     /**
      * Where to redirect users after login.
      *
