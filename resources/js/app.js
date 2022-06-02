@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
  import Vue from 'vue'
- import router from "./router";
+ import Vuex from 'vuex';
 require('./bootstrap');
 
 Vue.config.productionTip = false;
@@ -23,7 +23,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 // import SearchTemplate from "./views/ReUsables/SearchTemplate.vue";
 
 Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons)
+Vue.use(BootstrapVueIcons);
+Vue.use(Vuex);
 // Vue.use(VuePapaParse)
 // Vue.use(VueConfirmDialog)
 // Vue.use(ToggleButton);
@@ -55,9 +56,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import App from './Pages/App.vue'
+import store from "./store";
+import router from "./router";
 const app = new Vue({
     el: '#app',
     router,
+    store,
     components: {
         App
     }
