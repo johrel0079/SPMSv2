@@ -11286,3 +11286,18 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+html,
+body {
+  background: #eef2f3;
+  width: 100%;
+  min-height: 100vh;
+  /* padding: 30px 30px 30px 30px; */
+  z-index: 20;
+}
+.div_class{
+  background: #F2F3F7;
+  min-height: 87vh;
+  margin: 30px 30px 30px;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+}
