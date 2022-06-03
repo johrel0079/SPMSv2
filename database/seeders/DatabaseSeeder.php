@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             'middle_name'   => 'Flores',
             'position'      => 'Admin',
             'email'         => 'Admin@email.com',
+            'area_id'       => 1,
+            'role_id'       => 1
             
         ]);
     }
