@@ -206,7 +206,7 @@ class UserController extends Controller
         }
         return $this->returnResponse($result);
     }
-    public function sign_in(Request $request)
+    public function login(Request $request)
     {
 
       
@@ -218,19 +218,26 @@ class UserController extends Controller
         if ($credentials->fails()) {
             $result = $this->failedValidationResponse($credentials->errors()->all());
         } else {
+            $user = User::where('employee_number', $request->employee_number)->first();
 
             if (Auth::attempt($request->all())) {
-                $session= json_decode(json_encode(Auth::user()), true);
-                $request->session()->put($session);
                 $result = $this->successResponse("Login SuccessFully");
-                $result['data'] =  $request->session()->all();
-                //return redirect('dashboard');
-                
+                $result['data'] = $user->createToken('token')->plainTextToken;
             } else {
                 $result = $this->failedValidationResponse("The provided credentials do not match our records.");
             }
         }
         return $this->returnResponse($result);
+    }
+
+    public function getAuthenticated(){
+        try {
+            $result = $this->successResponse('User Authenticated');
+            // $this->user::findorfail($request->employee_number);
+            $result['data'] = $this->UserService->editUser(auth()->id());
+        } catch (\Exception $th) {
+            $result = $this->errorResponse($th);
+        }
     }
  
 
