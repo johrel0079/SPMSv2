@@ -1,0 +1,88 @@
+<template>
+   <div class=" sticky-top">
+    <b-navbar
+      toggleable="lg"
+      class="navbar"
+    >
+      <!-- <b-navbar-brand href="#">NavBar</b-navbar-brand> -->
+      <b-navbar-toggle target="nav-collapse" />
+
+      <b-collapse
+        id="nav-collapse"
+        is-nav
+      >
+        <b-navbar-nav>
+         <!-- Logo Here -->
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav>
+          <b-nav-item class="mr-3">
+            Dashboard
+          </b-nav-item>
+
+          <b-nav-item-dropdown
+          class="mr-3"
+            text="Transactions"
+            right
+          >
+            <b-dropdown-item>
+              Issuance
+            </b-dropdown-item>
+            <b-dropdown-item>
+              Distribution
+            </b-dropdown-item>
+             <b-dropdown-item>
+              Picking
+            </b-dropdown-item>
+            <b-dropdown-item>
+              Checking and Palletizing
+            </b-dropdown-item>
+            <b-dropdown-item>
+              Parts for DR
+            </b-dropdown-item>
+            <b-dropdown-item>
+              Update Delivery
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown
+          class="mr-3"
+            text="Managements"
+            right
+          >
+            <b-dropdown-item>
+              Area Code
+            </b-dropdown-item>
+            <b-dropdown-item>
+              Destination
+            </b-dropdown-item>
+             <b-dropdown-item>
+              User
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown
+          class="mr-3"
+            text="User"
+            right
+          >
+            <b-dropdown-item>
+              Log out
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
+</template>
+
+<script>
+export default {
+    
+}
+</script>
+
+<style scoped>
+
+</style>
