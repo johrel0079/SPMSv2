@@ -18,9 +18,9 @@ class AreaSeeder extends Seeder
           'WH1', 'WH2', 'WH3'
         ];
 
-        for($i=0; $i<$area.count(); $i++){
+        for($i=0; $i<count($area); $i++){
             Area::create([
-                'area'         => $area[$i],
+                'code'         => $area[$i],
             ]);
         }
         

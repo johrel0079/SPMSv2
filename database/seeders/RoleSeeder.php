@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
             'Guest'
           ];
   
-          for($i=0; $i<$role.count(); $i++){
+          for($i=0; $i<count($role); $i++){
               Role::create([
                   'role'  => $role[$i],
               ]);
