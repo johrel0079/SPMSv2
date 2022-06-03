@@ -29,7 +29,7 @@ export default {
             commit('SET_TOKEN', token);
             commit('SET_AUTHENTICATED', true);
 
-            // dispatch('user/setUser', null, { root: true });
+            dispatch('user/setUser', null, { root: true });
         },
         logout({commit, dispatch}) {
             console.log('logout vuex');
