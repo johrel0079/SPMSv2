@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Login from '../Pages/Login'
-import TheContainer from '../layout/TheContainer'
+import Dashboard from '../Pages/Dashboard'
 
 
 
@@ -17,7 +17,7 @@ const routes = [
 	{
 			path: "/",
 			name: "dashboard",
-			component: TheContainer,
+			component: Dashboard,
 	}
 ]
 const router = new VueRouter({
