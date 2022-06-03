@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['destination','attention_to','destination_class'];
+    protected $guarded = ['id'];
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destination;
+use App\Services\DestinationService;
 use Illuminate\Http\Request;
-
+use App\Traits\ResponseTrait;
 class DestinationController extends Controller
 {
     /**
@@ -12,9 +12,24 @@ class DestinationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    use ResponseTrait;
+
+    public function __construct(){
+        $this->DestinationService = new DestinationService();
+    }
+
     public function index()
     {
-        //
+        $result = $this->successResponse("Load Successfully");
+
+        try{
+            $result ['data'] = $this->DestinationService->loadDestination();
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
@@ -35,7 +50,15 @@ class DestinationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->successResponse("Inserted Successfully");
+
+        try{
+            $result ['data'] = $this->DestinationService->create($request->toArray());
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
@@ -44,9 +67,17 @@ class DestinationController extends Controller
      * @param  \App\Models\Destination  $destination
      * @return \Illuminate\Http\Response
      */
-    public function show(Destination $destination)
+    public function show($id)
     {
-        //
+        $result = $this->successResponse("Load Successfully");
+
+        try{
+            $result ['data'] = $this->DestinationService->showDestination($id);
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
@@ -67,9 +98,17 @@ class DestinationController extends Controller
      * @param  \App\Models\Destination  $destination
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Destination $destination)
+    public function update(Request $request, $id)
     {
-        //
+        $result = $this->successResponse("Update Successfully");
+
+        try{
+            $result ['data'] = $this->DestinationService->updateDestination($request->toArray(),$id);
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
@@ -78,8 +117,16 @@ class DestinationController extends Controller
      * @param  \App\Models\Destination  $destination
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Destination $destination)
+    public function destroy($id)
     {
-        //
+        $result = $this->successResponse("Delete Successfully");
+
+        try{
+            $result ['data'] = $this->DestinationService->deleteDestination($id);
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 }

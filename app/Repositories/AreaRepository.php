@@ -19,7 +19,7 @@ class AreaRepository {
     }
 
     public function showArea($id){
-        return $this->Area->find($id)->first();
+        return $this->Area->find($id);
     }
 
     public function updateArea($data,$id){

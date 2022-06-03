@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MasterDataController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\DestinationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +30,4 @@ Route::get('load-ticket-control-number',[MasterDataController::class,'loadTicket
 Route::get('load-batch-ticket',[MasterDataController::class,'loadBatchTicket']);
 
 Route::resource('/area',AreaController::class);
+Route::resource('/destination',DestinationController::class);
