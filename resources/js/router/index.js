@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import Login from '../Pages/Login'
 import Dashboard from '../Pages/Dashboard'
+import store from "../store";
 
 
 
@@ -13,11 +14,19 @@ const routes = [
 		path: "/login",
 		name: "login",
 		component: Login ,
+		meta: {
+			title: 'Login',
+			
+		}
 	},
 	{
 			path: "/",
 			name: "dashboard",
 			component: Dashboard,
+			meta: {
+				title: 'Dashboard',
+				requiredAuth: true
+			}
 	}
 ]
 const router = new VueRouter({
@@ -27,12 +36,16 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (to.name=='login') {
-        next({name: 'dashboard'})
+	console.log(store.state.auth.authenticated);
+	if (to.name=='login' && store.state.auth.authenticated) {
+        next({name: 'home'})
     }
-	else
+	else if(to.matched.some(record => record.meta.requiredAuth) && !store.state.auth.authenticated)
 	{
-		next()
+		
+		next({name: 'login'})
+	}else{
+		next();
 	}
 })
 
