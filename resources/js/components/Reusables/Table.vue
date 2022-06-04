@@ -55,6 +55,12 @@
           <span aria-hidden="true"><b-icon icon="square" /></span>
         </template>
       </template>
+      <template
+        v-if="action_dropdown"
+        #cell(action)
+      >
+       <slot name="action"></slot>
+      </template>
     </b-table>
     <div
       v-if="items.length==0"
