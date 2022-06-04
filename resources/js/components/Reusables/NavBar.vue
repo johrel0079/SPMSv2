@@ -51,7 +51,7 @@
             text="Managements"
             right
           >
-            <b-dropdown-item>
+            <b-dropdown-item @click="areaCode()">
               Area Code
             </b-dropdown-item>
             <b-dropdown-item>
@@ -79,6 +79,7 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex';
+// import router from '../../../router';
 export default {
     methods: {
       ...mapActions('auth', {
@@ -86,9 +87,12 @@ export default {
       }),
       logout(){
         this.$http.get('api/logout')
-        .then((respone) => {
+        .then((response) => {
             this.logoutState();
         });
+      },
+      areaCode(){
+        this.$router.push({name: 'area-code'});
       }
     }
 }
