@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MasterDataController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DestinationController;
 /*
@@ -18,11 +19,16 @@ use App\Http\Controllers\DestinationController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::get('/user-authenticate', [UserController::class, 'getAuthenticated']);
+    Route::get('/logout', [UserController::class, 'logout']);
 });
 
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [UserController::class, 'login']);
+
 Route::resource('/masterdata', MasterDataController::class);
 
 Route::get('load-ticket-issuance',[MasterDataController::class,'loadTicketIssuance']);

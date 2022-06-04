@@ -37,6 +37,8 @@ Vue.prototype.axios = axios;
 Vue.prototype.$http = axios;
 window.Vue = require('vue').default;
 
+import setupInterceptor from './interceptor';
+setupInterceptor();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49,6 +51,8 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+Vue.component('log-in', require('./Pages/Login.vue').default);
 Vue.component('nav-bar', require('./components/Reusables/NavBar.vue').default);
 
 /**

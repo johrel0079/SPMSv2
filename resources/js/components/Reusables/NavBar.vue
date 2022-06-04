@@ -67,7 +67,7 @@
             text="User"
             right
           >
-            <b-dropdown-item>
+            <b-dropdown-item @click="logout()">
               Log out
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -78,8 +78,19 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex';
 export default {
-    
+    methods: {
+      ...mapActions('auth', {
+        logoutState: 'logout'
+      }),
+      logout(){
+        this.$http.get('api/logout')
+        .then((respone) => {
+            this.logoutState();
+        });
+      }
+    }
 }
 </script>
 

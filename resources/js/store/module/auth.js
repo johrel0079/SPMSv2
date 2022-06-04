@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import router from '../../router';
 export default {
     namespaced: true,
     state:{
@@ -29,15 +29,15 @@ export default {
             commit('SET_TOKEN', token);
             commit('SET_AUTHENTICATED', true);
 
-            // dispatch('user/setUser', null, { root: true });
+            dispatch('user/setUser', null, { root: true });
         },
-        logout({commit, dispatch}) {
-            console.log('logout vuex');
-            
+        logout({commit}) {  
             delete axios.defaults.headers.common['Authorization'];
 
             commit('SET_AUTHENTICATED', false);
             commit('SET_TOKEN', {});
+
+            router.push('/login');
             // dispatch('user/removeUser', null, { root: true });
         }
     }

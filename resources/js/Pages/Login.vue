@@ -70,11 +70,11 @@ export default {
           employee_number: this.employee_number,
           password: this.password 
         }
-      console.log(data);
+        
       await this.$http.get('sanctum/csrf-cookie');  
       await this.$http.post('api/login', data)
       .then((response) => {
-        this.loginState(response.data);
+        this.loginState(response.data.data);
       }).catch((response) => {
         console.log(response);
       })
