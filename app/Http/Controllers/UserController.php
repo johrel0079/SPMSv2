@@ -222,7 +222,10 @@ class UserController extends Controller
 
             if (Auth::attempt($request->all())) {
                 $result = $this->successResponse("Login SuccessFully");
-                $result['data'] = $user->createToken('token')->plainTextToken;
+                $token =$user->createToken('token')->plainTextToken;
+                // $user_data = auth()->user();
+                // $result['data'] = ['token' => $token, 'user' => $user];
+                $result['data'] =$token;
             } else {
                 $result = $this->failedValidationResponse("The provided credentials do not match our records.");
             }
@@ -233,11 +236,12 @@ class UserController extends Controller
     public function getAuthenticated(){
         try {
             $result = $this->successResponse('User Authenticated');
-            // $this->user::findorfail($request->employee_number);
+            // dd(auth()->user());
             $result['data'] = $this->UserService->editUser(auth()->id());
         } catch (\Exception $th) {
             $result = $this->errorResponse($th);
         }
+        return $this->returnResponse($result);
     }
  
 
