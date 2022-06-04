@@ -21,7 +21,7 @@ export default {
     },
     actions:{
         async setUser({commit}){
-            return await axios.get('/api/user-authenticate').then((response) => {
+            return await axios.get('api/user-authenticate').then((response) => {
                 commit('SET_USER', response.data.data);
                 router.push('/');
             }).catch((response) => {
