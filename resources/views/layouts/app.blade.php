@@ -19,14 +19,24 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body>
-    <div id="app">
-        <div class="container-fluid">
-            <app class="main-content"> </app>
-        </div>
+<body style="background-image: url(../../../../images/bg.jpg);" > 
+    <div>
+        Spare Parts Monitoring System Logo Here
     </div>
-    <script src="{{ asset('js/app.js') }}"
+    <div style="float: right;">
+        User Name (area)
+    </div>
 
-    @yield('script')
+    <div class="div_class"> 
+        <div id="app">
+            <div class="fluid">
+                <app class="main-content"> </app>
+            </div>
+        </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        @yield('script')
+    </div>
+   
 </body>
 </html>
