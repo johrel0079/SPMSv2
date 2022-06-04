@@ -60,7 +60,12 @@
                                     :action_dropdown="true"
                                     :is_search="true"
                                     :flag="'area_code'"
-                                    :is_select= "false"/>
+                                    :is_select= "false">
+                                    <template #action>
+                                        <button class="btn btn-success btn-md"><b-icon icon="pencil-square"></b-icon></button> 
+                                        <button class="btn btn-danger btn-md"><b-icon icon="trash-fill"></b-icon> </button>
+                                    </template>
+                                    </table-component>
                             </div>
                         </b-card>
 
