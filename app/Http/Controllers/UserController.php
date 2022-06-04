@@ -243,6 +243,13 @@ class UserController extends Controller
         }
         return $this->returnResponse($result);
     }
+
+    public function logout(){
+        auth()->user()->tokens()->delete();
+        $result = $this->successResponse("Logout");
+        $result['data'] = [];
+        return $this->returnResponse($result);
+    }
  
 
 }
