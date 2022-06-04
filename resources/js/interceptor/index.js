@@ -3,7 +3,7 @@ import store from '../store';
 
 
 export default function setupInterceptor() {
-    axios.interceptors.request.use(request => {
+    axios.interceptors.request.use(
         (config) => {
             let token = store.state.auth.token;
             if(token){
@@ -14,5 +14,5 @@ export default function setupInterceptor() {
         (error) => {
             return Promise.reject(error);
         }
-    });
+    );
 }
