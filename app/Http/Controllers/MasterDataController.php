@@ -98,7 +98,7 @@ class MasterDataController extends Controller
                         'storage_location'        => $new_data[$i][25],
                         'delivery_due_date'       => $delivery_due_date,
                         'order_download_no'       => $new_data[$i][32],
-                        'process_masterlist_id'   => Auth::id()
+                        'process_masterlist_id'   => 1
                     ];
                 }
 
