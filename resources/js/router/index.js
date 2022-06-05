@@ -1,9 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store";
 
 import Login from '../Pages/Login'
 import Dashboard from '../Pages/Dashboard'
-import store from "../store";
+import AreaCode from '../Pages/Management/AreaCode/Index'
 
 
 
@@ -27,22 +28,31 @@ const routes = [
 				title: 'Dashboard',
 				requiredAuth: true
 			}
+	},
+	{
+		path: "/area-code",
+		name: 'area-code',
+		component: AreaCode,
+		meta: {
+			title: 'Area Code',
+			requiredAuth: true
+		}
 	}
 ]
 const router = new VueRouter({
-	mode: "history",
+	mode: "hash",
 	base: process.env.BASE_URL,
 	routes,
 });
 
 router.beforeEach((to, from, next) => {
-	console.log(store.state.auth.authenticated);
-	if (to.name=='login' && store.state.auth.authenticated) {
-        next({name: 'home'})
+	
+	if (to.name=='login' && localStorage.getItem('is_authenticated')) {
+        next({name: 'dashboard'})
     }
-	else if(to.matched.some(record => record.meta.requiredAuth) && !store.state.auth.authenticated)
+	else if(to.matched.some(record => record.meta.requiredAuth) && !localStorage.getItem('is_authenticated'))
 	{
-		
+		console.log('yes')
 		next({name: 'login'})
 	}else{
 		next();
