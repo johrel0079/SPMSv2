@@ -24,8 +24,11 @@
                             </b-col>
                             <div>
                                 <b-button variant="primary" size="sm" class="px-4 mt-3">
-                                Save
-                            </b-button>
+                                    {{button_name}}
+                                </b-button>
+                                <b-button v-if="button_name=='Update'" @click="submitCancel()" variant="secondary" size="sm" class="px-4 mt-3">
+                                    Cancel
+                                </b-button>
                             </div>
                       </b-row>
 
@@ -42,7 +45,7 @@
                                     :is_search="true"
                                     :flag="'area_code'"
                                     :is_select= "false"
-                                    :getId="getAreaId()">
+                                    @emittedId="getAreaId">
                                     </table-component>
                  
                     </b-card>
@@ -82,7 +85,8 @@ export default
             }
             ],
             area_code_list: [],
-            id: 0,
+            id: null,
+            button_name: 'Save'
         };
        
     },
@@ -90,10 +94,16 @@ export default
         this.$_areaCodeMixin_getList();
     },
     methods: {
-        getAreaId(id){
-            this.id = id;
-            console.log(id)
-        }
+        getAreaId(value){
+            this.area_code = value.code;
+            this.id = value.id
+            this.button_name = 'Update'
+        },
+        submitCancel(){
+            this.area_code = '';
+            this.id = null;
+            this.button_name = 'Save'
+        },
     }
 }
 </script>
