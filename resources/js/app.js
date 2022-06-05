@@ -5,6 +5,8 @@
  */
  import Vue from 'vue'
  import Vuex from 'vuex';
+ import store from "./store";
+import router from "./router";
 require('./bootstrap');
 
 Vue.config.productionTip = false;
@@ -69,8 +71,7 @@ Vue.component('table-component', require('./components/Reusables/Table.vue').def
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import App from './Pages/App.vue'
-import store from "./store";
-import router from "./router";
+
 const app = new Vue({
     el: '#app',
     router,
