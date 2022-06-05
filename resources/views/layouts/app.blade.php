@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -19,18 +16,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body style="background-image: url(../../../../images/bg.jpg);" > 
-    <div>
-        Spare Parts Monitoring System Logo Here
-    </div>
-    <div style="float: right;">
-        User Name (area)
-    </div>
+<body>
 
     <div class="div_class"> 
         <div id="app">
             <div class="fluid">
-                <app class="main-content"> </app>
+                <App class="main-content"> </App>
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
