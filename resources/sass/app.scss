@@ -8,11 +8,4 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-html ,
-body {
-    background: #eef2f3;
-    width: 100%;
-    min-height: 100vh;
-    padding: 30px 30px 30px 30px;
-    z-index: 20;
-}
+@import 'base';
