@@ -14,3 +14,16 @@ body {
     min-height: 100vh;
     align-items: center;
 }
+
+.page-content {
+    width: 100%;
+    min-height: 70vh;
+    padding: 50px 50px 50px 50px;
+    z-index: 20;
+    .bg-color {
+        background-color: #fff;
+        min-height: 80vh;
+        box-shadow: 3px 3px 3px 3px grey !important;
+        overflow-y: scroll;
+    }
+}
