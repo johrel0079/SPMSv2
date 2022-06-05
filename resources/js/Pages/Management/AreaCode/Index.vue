@@ -23,7 +23,7 @@
                                 </div>
                             </b-col>
                             <div>
-                                <b-button variant="primary" size="sm" class="px-4 mt-3">
+                                <b-button variant="primary" size="sm" class="px-4 mt-3" @click="submit()">
                                     {{button_name}}
                                 </b-button>
                                 <b-button v-if="button_name=='Update'" @click="submitCancel()" variant="secondary" size="sm" class="px-4 mt-3">
@@ -104,6 +104,21 @@ export default
             this.id = null;
             this.button_name = 'Save'
         },
+        async submit(){
+            if(this.button_name=='Save'){
+                let data = {
+                    code: this.area_code
+                }
+                await this.$http.post('api/area', data)
+                .then((response) => {
+                    this.$_areaCodeMixin_getList();
+                    console.log(response)
+                }).catch((response) => {
+                    console.log(response);
+                })
+            }
+            
+         }
     }
 }
 </script>
