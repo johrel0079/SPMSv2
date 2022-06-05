@@ -98,6 +98,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped >
+nav {
+  background: white;
+    border-top: 2px solid gray;
+    border-bottom: 1px solid  gray;
+    a .nav-link{
+      color: black !important;
+    }
+}
 
+nav .navbar-nav{
+  display: flex;
+  justify-content: space-between;
+ 
+}
 </style>
