@@ -28,7 +28,7 @@
       </b-col>
     </b-row>
     <b-table
-      id="tbl_reusable"
+     id="tbl_reusable"
       ref="tbl_reusable"
       responsive
       :items="items"
@@ -43,23 +43,13 @@
       label-sort-asc=""
       label-sort-desc=""
       label-sort-clear=""
-      :selectable="is_select"
-      @filtered="onFiltered"
-      @row-selected="selectedRow"
-    >
-      <template #cell(select)="{ rowSelected }">
-        <template v-if="rowSelected">
-          <span aria-hidden="true"><b-icon icon="check-square-fill" /></span>
-        </template>
-        <template v-else>
-          <span aria-hidden="true"><b-icon icon="square" /></span>
-        </template>
-      </template>
+      :selectable="is_select">
       <template
         v-if="action_dropdown"
-        #cell(action)
+        #cell(action)="data"
       >
-       <slot name="action"></slot>
+        <b-button class="btn btn-success btn-sm" @click="id=data.item.id,emitId()"><b-icon icon="pencil-square"></b-icon></b-button> 
+        <button class="btn btn-danger btn-sm  "><b-icon icon="trash-fill"></b-icon> </button>
       </template>
     </b-table>
     <div
@@ -124,10 +114,8 @@ export default {
             filter: null,
             filterOn: [],
             currentPage: 1,
-            ticket_id: 0,
-            ticket_key: 0,
-            po_key: 1,
             selected: [],
+            id: null
         };
     },
     watch: {
@@ -136,7 +124,10 @@ export default {
         },
     },
     methods : {
-      
+        emitId(){
+          this.$refs.tbl_reusable.$emit('getId', this.id);
+          console.log('table',this.id);
+        },
         onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering
             this.totalRows = filteredItems.length;
@@ -157,27 +148,14 @@ export default {
     }
 };
 </script>
-<style scoped>
-  a {
-      color: #0a4296 !important;
-      cursor: pointer !important;
+<style lang="scss" scoped>
+  td th{
+    font-size: 13px !important;
   }
-  a:hover {
-      text-decoration: underline !important;
-  }
-.table.b-table > tbody > .table-active, .table.b-table > tbody > .table-active > th, .table.b-table > tbody > .table-active > td {
-    background-color: transparent !important;
-}
-
-.table.b-table > tbody > .table-active, .table.b-table > tbody > .table-active > th, .table.b-table > tbody > .table-active > td {
-    background-color: transparent !important;
-}
-
-.table-active {
-    --bs-table-accent-bg: transparent !important;
-
-}
-.table > :not(:first-child) {
+  .table > :not(:first-child) {
     border-top: 0 !important;
-}
+  }
+  thead {
+    border-bottom-width: 0px !important;
+  }
 </style>
