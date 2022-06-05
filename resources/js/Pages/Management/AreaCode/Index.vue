@@ -105,11 +105,19 @@ export default
             this.button_name = 'Save'
         },
         async submit(){
+            let data = {
+                code: this.area_code
+            }
             if(this.button_name=='Save'){
-                let data = {
-                    code: this.area_code
-                }
                 await this.$http.post('api/area', data)
+                .then((response) => {
+                    this.$_areaCodeMixin_getList();
+                    console.log(response)
+                }).catch((response) => {
+                    console.log(response);
+                })
+            }else {
+                await this.$http.put('api/area/'+this.id, data)
                 .then((response) => {
                     this.$_areaCodeMixin_getList();
                     console.log(response)
