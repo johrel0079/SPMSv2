@@ -3,51 +3,39 @@
     <div class="bg-color">
     <nav-bar/>
     <div class="mb-4">
-         <div class="container">
-             <h4>Area Management</h4> 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <b-row>
-                                    <b-col sm="5">
-                                        <label for="area-code">Area code</label>
-                                        <b-form-input
-                                        id="area-code"
-                                        v-model="area_code"
-                                        placeholder="Area Code"
-                                        required
-                                        ></b-form-input>
-                                    </b-col>
-                                    <b-col sm="5">
-                                        <label>Status:</label>
-                                                <select class="form-control" name="position" id="slc_status" v-model="status" required>
-                                                    <option disabled selected value="">Select</option>
-                                                    <option value="1"> Active </option>
-                                                    <option value="0"> Inactive </option>
-                                                </select>
-                                        <!-- <label>Status:</label>
-                                            <b-form-checkbox
-                                                v-model="status"
-                                                switch
-                                            ></b-form-checkbox> -->
-                                    </b-col>
-                                </b-row>
-                            
-                                    <div style="text-align: right;">
-                                      <hr>
-                                      <button type="submit" id="btn_save" class="btn btn-success"> Register </button>
-                                      <button type="submit" id="btn_save" class="btn btn-danger"> Reset </button>
-                                      <button type="submit" id="btn_save" class="btn btn-primary"> Save </button>
+         <div class="container px-3">
+             <h5 class="mt-3">Area Management</h5> 
+              <b-row>
+                  <b-col sm="6">
+                      <b-row>
+                          <b-col sm="6">
+                              <div class="mt-3">
+                                <label for="area-code">Area code</label>
+                                <b-form-input
+                                    id="area-code"
+                                    v-model="area_code"
+                                    placeholder="Area Code"
+                                    required
+                                ></b-form-input>
+                                    <div class="mt-2">
+                                        <label>Status</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" v-model="status" type="checkbox" role="switch" id="status">
+                                        </div>
                                     </div>
-                                    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <b-card class="mt-3">
-                            <div class="card-body">
-                                <h5>List of Area Code</h5>
+                              </div>
+                              
+                                <b-button variant="primary" size="sm" class="px-4 mt-3">
+                                    Save
+                                </b-button>
+                          </b-col>
+                      </b-row>
+                       
+                  </b-col>
+                  <b-col sm="6">
+                    <b-card>
+
+                            <h6>List of Area Code</h6>
                                 <table-component    
                                     :fields="fields"
                                     :items="items"
@@ -63,10 +51,10 @@
                                         <button class="btn btn-danger btn-md"><b-icon icon="trash-fill"></b-icon> </button>
                                     </template>
                                     </table-component>
-                            </div>
-                        </b-card>
-                    </div>
-                </div>
+                 
+                    </b-card>
+                  </b-col>
+              </b-row>
             </div>
     </div>
 
@@ -111,3 +99,7 @@ export default
     }
 }
 </script>
+
+<style scoped>
+
+</style>
