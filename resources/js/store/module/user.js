@@ -23,7 +23,13 @@ export default {
         async setUser({commit}){
             return await axios.get('api/user-authenticate').then((response) => {
                 commit('SET_USER', response.data.data);
-                router.push('/');
+                if(localStorage.getItem('user_info') === null)
+				{
+					localStorage.setItem('user_info', JSON.stringify(response.data.data));
+						setTimeout(function() {
+								router.push('/')
+							  }, 500);
+				}
             }).catch((response) => {
 
             });
