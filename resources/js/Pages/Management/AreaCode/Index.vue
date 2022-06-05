@@ -1,13 +1,10 @@
 <template>
-<div>
+<div class="page-content">
+    <div class="bg-color">
     <nav-bar/>
-      <section class="content-header">
-            <div class="container-fluid">
-                <h4>Area Management</h4>    
-            </div>
-        </section>
-        <section class="content">
-            <div class="container-fluid">
+    <div class="mb-4">
+         <div class="container">
+             <h4>Area Management</h4> 
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -68,15 +65,15 @@
                                     </table-component>
                             </div>
                         </b-card>
-
                     </div>
                 </div>
-             
-                 
-               
             </div>
-        </section>
+    </div>
 
+
+           
+      
+</div>
 </div>
 
 </template>
