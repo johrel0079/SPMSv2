@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('status')->nullable();
             $table->string('section')->nullable();
             $table->integer('area_id')->nullable();
-            $table->integer('role_id')->nullable();
+            $table->integer('role_id');
             // $table->string('section_code')->nullable();
             //
             // $table->integer('user_type_id')->nullable();

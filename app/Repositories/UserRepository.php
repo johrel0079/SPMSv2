@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\User;
-
-
+use DB;
+use App\Models\Role;
 class UserRepository
 {
 
@@ -14,7 +14,13 @@ class UserRepository
    }
    public function loadUsers()
    {
-      return $this->user->orderBy('id')->get();
+      // return $this->user->orderBy('id')->get();
+
+      return $this->user
+                  ->join('roles','users.role_id','=','roles.id')
+                  ->orderBy('users.id')
+                  ->get();
+    
    }
    public function editUser($id)
    {

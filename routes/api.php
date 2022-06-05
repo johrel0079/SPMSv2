@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 });
 
 Route::post('/login', [UserController::class, 'login']);
+Route::get('/load-user',[UserController::class,'index']);
 
 Route::resource('/masterdata', MasterDataController::class);
 
