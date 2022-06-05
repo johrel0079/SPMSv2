@@ -48,7 +48,7 @@
         v-if="action_dropdown"
         #cell(action)="data"
       >
-        <b-button class="btn btn-success btn-sm" @click="id=data.item.id,emitId()"><b-icon icon="pencil-square"></b-icon></b-button> 
+        <b-button class="btn btn-success btn-sm" @click="emitId(data.item)"><b-icon icon="pencil-square"></b-icon></b-button> 
         <button class="btn btn-danger btn-sm  "><b-icon icon="trash-fill"></b-icon> </button>
       </template>
     </b-table>
@@ -124,9 +124,8 @@ export default {
         },
     },
     methods : {
-        emitId(){
-          this.$refs.tbl_reusable.$emit('getId', this.id);
-          console.log('table',this.id);
+        emitId(value){
+          this.$emit('emittedId', value);
         },
         onFiltered(filteredItems) {
             // Trigger pagination to update the number of buttons/pages due to filtering
