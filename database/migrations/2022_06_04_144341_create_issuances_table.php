@@ -18,6 +18,7 @@ class CreateIssuancesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('master_data_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

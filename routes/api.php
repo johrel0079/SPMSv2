@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\IssuanceController;
+use App\Http\Controllers\DistributionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,3 +43,5 @@ Route::resource('/area',AreaController::class);
 Route::resource('/destination',DestinationController::class);
 
 Route::resource('/issuance',IssuanceController::class);
+
+Route::resource('/distribution', DistributionController::class);
