@@ -4,7 +4,7 @@ body {
     width: 100% !important;
     min-height: 100vh !important;
     z-index: 20 !important;
-    background: url(/../assets/image/log-bg.jpg) !important;
+    background: url(/../assets/image/bg-logo.jpg) !important;
     background-size: cover !important;
     overflow-y: hidden !important;
 }
@@ -18,12 +18,12 @@ body {
 .page-content {
     width: 100%;
     min-height: 70vh;
-    padding: 50px 50px 50px 50px;
+    padding: 30px 30px 30px 30px !important;
     z-index: 20;
     .bg-color {
-        background-color: #fff;
-        min-height: 80vh;
-        box-shadow: 3px 3px 3px 3px grey !important;
+        background-color: #f8fafc;
+        min-height: 80vh !important;
+        border: 1px solid #f8fafc; // box-shadow: 3px 3px 3px 3px grey !important;
         overflow-y: scroll;
     }
 }
