@@ -44,7 +44,16 @@
       label-sort-asc=""
       label-sort-desc=""
       label-sort-clear=""
-      :selectable="is_select">
+      :selectable="is_select"
+      @row-selected="selectedRow">
+      <template #cell(select)="{ rowSelected }">
+        <template v-if="rowSelected">
+          <span aria-hidden="true"><b-icon icon="check-square-fill" /></span>
+        </template>
+        <template v-else>
+          <span aria-hidden="true"><b-icon icon="square" /></span>
+        </template>
+      </template>
       <template
         v-if="action_dropdown"
         #cell(action)="data"
@@ -142,7 +151,7 @@ export default {
                 this.selected = items;
             }
 
-            this.$emit('prsSelected', this.selected);
+            this.$emit('selectData', this.selected);
             console.log('items',items);
         },
         selectAllRows() {
