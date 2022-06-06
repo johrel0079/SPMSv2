@@ -38,15 +38,15 @@
                             <!-- <h6>List of Area Code</h6> -->
                                 <table-component    
                                     :fields="fields"
-                                    :items="area_code_list"
+                                    :items="master_data_list"
                                     :perPage="10"
                                     :rows="5"
                                     :status="''"
                                     :action_dropdown="true"
                                     :is_search="true"
-                                    :flag="'area_code'"
+                                    :flag="'master_data'"
                                     :is_select= "false"
-                                    :getId="getAreaId()">
+                                    >
                                     </table-component>
                  
                     </b-card>
@@ -64,14 +64,11 @@
 </template>
 
 <script>
-import AreaCodeMixin from '../../../mixins/AreaCode'
 export default 
 {
-    mixins: [AreaCodeMixin],
     data(){
         return {
-            area_code: '',
-            status: null,
+            master_data_list:[],
             fields: [
             {
                 key: 'ticket_class',
@@ -114,19 +111,21 @@ export default
                 sortable: true
             },
             ],
-            area_code_list: [],
             id: 0,
         };
        
     },
     mounted(){
-        this.$_areaCodeMixin_getList();
+        this.getList();
     },
     methods: {
-        getAreaId(id){
-            this.id = id;
-            console.log(id)
-        }
+      getList(){
+          this.$http.get('api/masterdata')
+                .then((response) => {
+                    this.master_data_list = response.data.data
+                    console.log(response);
+                });
+      }
     }
 }
 </script>
