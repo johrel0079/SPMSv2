@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->id();
             $table->string('code')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

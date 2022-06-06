@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\IssuanceController;
+use App\Http\Controllers\DistributionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,8 +37,11 @@ Route::resource('/masterdata', MasterDataController::class);
 Route::get('load-ticket-issuance',[MasterDataController::class,'loadTicketIssuance']);
 Route::get('load-ticket-control-number',[MasterDataController::class,'loadTicketControlNumber']);
 Route::get('load-batch-ticket',[MasterDataController::class,'loadBatchTicket']);
+Route::patch('update-ticket-issuance',[MasterDataController::class,'updateTicketIssuance']);
 
 Route::resource('/area',AreaController::class);
 Route::resource('/destination',DestinationController::class);
 
 Route::resource('/issuance',IssuanceController::class);
+
+Route::resource('/distribution', DistributionController::class);
