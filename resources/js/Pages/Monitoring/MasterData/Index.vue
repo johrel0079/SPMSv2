@@ -3,7 +3,7 @@
     <div class="bg-color">
     <nav-bar/>
     <div class="mb-4">
-         <div class="container px-3">
+         <div class="container">
              <h5 class="mt-3">Master Data</h5> 
                       <b-row class="mt-3">
                           <b-form
@@ -33,23 +33,24 @@
                         </b-form>
                       </b-row>
 
-                    <b-card class="mt-3">
+                    <!-- <b-card class="mt-3"> -->
 
                             <!-- <h6>List of Area Code</h6> -->
                                 <table-component    
+                                    :stickyColumn="true"
                                     :fields="fields"
-                                    :items="area_code_list"
+                                    :items="master_data_list"
                                     :perPage="10"
                                     :rows="5"
                                     :status="''"
                                     :action_dropdown="true"
                                     :is_search="true"
-                                    :flag="'area_code'"
+                                    :flag="'master_data'"
                                     :is_select= "false"
-                                    :getId="getAreaId()">
+                                    >
                                     </table-component>
                  
-                    </b-card>
+                    <!-- </b-card> -->
                  
             
             </div>
@@ -64,21 +65,14 @@
 </template>
 
 <script>
-import AreaCodeMixin from '../../../mixins/AreaCode'
 export default 
 {
-    mixins: [AreaCodeMixin],
     data(){
         return {
-            area_code: '',
-            status: null,
+            master_data_list:[],
             fields: [
             {
-                key: 'ticket_class',
-                sortable: true
-            },
-            {
-                key: 'ticket_type',
+                key: 'warehouse_class',
                 sortable: true
             },
             {
@@ -94,11 +88,7 @@ export default
                 sortable: true
             },
             {
-                key: 'account_code',
-                sortable: true
-            },
-            {
-                key: 'delivery_quantity',
+                key: 'delivery_qty',
                 sortable: true
             },
             {
@@ -110,23 +100,90 @@ export default
                 sortable: true
             },
             {
+                key: 'stock_address',
+                sortable: true
+            },
+            {
                 key: 'delivery_inst_date',
                 sortable: true
             },
+            {
+                key: 'destination_code',
+                sortable: true
+            },
+            {
+                key: 'item_name',
+                sortable: true
+            },
+            {
+                key: 'product_no',
+                sortable: true
+            },
+            {
+                key: 'ticket_no',
+                sortable: true
+            },
+            {
+                key: 'ticket_issue_date',
+                sortable: true
+            },
+            {
+                key: 'ticket_issue_time',
+                sortable: true
+            },
+             {
+                key: 'order_download_no',
+                sortable: true
+            },
             ],
-            area_code_list: [],
             id: 0,
         };
        
     },
     mounted(){
-        this.$_areaCodeMixin_getList();
+        this.getList();
     },
     methods: {
-        getAreaId(id){
-            this.id = id;
-            console.log(id)
+      getList(){
+          this.$http.get('api/masterdata')
+                .then((response) => {
+                    this.master_data_list = response.data.data
+                    console.log(response);
+                });
+      },
+      uploadFile() {
+           if(document.getElementById("input-file").value == "")
+      {
+        this.toast("Warning", "Please select file to upload.");
+      }
+      else{
+        var formData = new FormData();
+        var excelFile = document.querySelector("#input-file");
+        let fileType = excelFile.files[0].name.split('.')[1];
+          
+        if((fileType !== 'csv') && (fileType !== 'xlsx')){
+          document.getElementById("input-file").value = "";
+          this.toast("Warning", "Please Upload a CSV or XLSX file type only.");
         }
+        else{
+        formData.append("file", excelFile.files[0]);
+         this.$http.post('api/masterdata', formData)
+        .then((response)=>{
+            this.getList();
+          console.log(response);
+         
+          })
+          .catch((error) => {
+            this.toast("error", "Something went wrong");
+            document.getElementById("input-file").value = "";
+            console.log(error);
+          })
+          .finally(() => {
+          });
+        }
+      }
+    },
+      
     }
 }
 </script>

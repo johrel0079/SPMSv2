@@ -156,12 +156,12 @@ class MasterDataController extends Controller
         //
     }
 
-    public function loadTicketIssuance()
+    public function loadTicketIssuance($id)
     {
         $result = $this->successResponse("Loaded Data Successfully");
 
         try{
-            $result ["data"] = $this->MasterDataService->loadTicketIssuance();
+            $result ["data"] = $this->MasterDataService->loadTicketIssuance($id);
 
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
@@ -193,6 +193,20 @@ class MasterDataController extends Controller
 
         try{
             $result ["data"] = $this->MasterDataService->loadBatchTicket($request->controlno);
+
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+        
+        return $this->returnResponse($result);
+    }
+
+    public function updateTicketIssuance(Request $request)
+    {
+        $result = $this->successResponse("Updated Successfully");
+
+        try{
+            $result ["data"] = $this->MasterDataService->updateTicketIssuance($request->id,$request->data);
 
         }catch(\Exception $e){
             $result = $this->errorResponse($e);

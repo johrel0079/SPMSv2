@@ -31,6 +31,7 @@
      id="tbl_reusable"
       ref="tbl_reusable"
       responsive
+      :stickyColumn="stickyColumn"
       :items="items"
       :filter="filter"
       :fields="fields"
@@ -104,6 +105,10 @@ export default {
             type: Boolean,
             required: true
         },
+        stickyColumn: {
+            type: Boolean,
+            required: true
+        }
     },
     data(){
         return {
@@ -148,7 +153,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-  td th{
+  table td th{
     font-size: 13px !important;
   }
   .table > :not(:first-child) {

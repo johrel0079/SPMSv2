@@ -131,8 +131,9 @@ export default {
 <style lang="scss" scoped >
 nav {
   background: white;
-    border-top: 2px solid gray;
-    border-bottom: 1px solid  gray;
+    // border-top: 2px solid gray;
+    box-shadow: 2px 2px 2px 2px grey !important;
+    // border-bottom: 1px solid  gray;
     a .nav-link{
       color: black !important;
     }
