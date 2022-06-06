@@ -31,7 +31,8 @@
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
-                        :is_select= "true">
+                        :is_select= "true"
+                        @selectData="getSelected">
                         </table-component>
                 </b-card>  
             </div>
@@ -68,7 +69,8 @@ export default
                 sortable: true
             },
             ],
-            issuance_list: []
+            issuance_list: [],
+            selected_list: []
         };
        
     },
@@ -80,6 +82,7 @@ export default
             this.$http.get('api/load-ticket-issuance')
                 .then((response) => {
                     this.issuance_list = response.data.data
+                    console.log(response);
                  })
                 .catch((error) => {
                     this.toast.error("Something went wrong");
@@ -87,6 +90,9 @@ export default
                 })
                 .finally(() => {
                 });
+        },
+        getSelected(value){
+            this.selected_list = value;
         },
        batchPrinting()
        {
