@@ -21,7 +21,7 @@
     <div class="div_class"> 
         <div id="app">
             <div class="fluid">
-                <App class="main-content"> </App>
+                @yield('content')
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>

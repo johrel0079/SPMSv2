@@ -5,13 +5,23 @@
  */
  import Vue from 'vue'
  import Vuex from 'vuex';
+ import store from "./store";
+import router from "./router";
 require('./bootstrap');
 
 Vue.config.productionTip = false;
 
-import { BootstrapVue,BootstrapVueIcons } from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
 // import "../src/template/assets/sass/views/custom-tabs.scss";
 // import "../src/template/assets/sass/views/custom-cards.scss";
 // import VuePapaParse from 'vue-papa-parse'
@@ -22,8 +32,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 // import VueMask from 'v-mask'
 // import SearchTemplate from "./views/ReUsables/SearchTemplate.vue";
 
-Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
+
 Vue.use(Vuex);
 // Vue.use(VuePapaParse)
 // Vue.use(VueConfirmDialog)
@@ -54,6 +63,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('log-in', require('./Pages/Login.vue').default);
 Vue.component('nav-bar', require('./components/Reusables/NavBar.vue').default);
+Vue.component('table-component', require('./components/Reusables/Table.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -61,8 +71,7 @@ Vue.component('nav-bar', require('./components/Reusables/NavBar.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import App from './Pages/App.vue'
-import store from "./store";
-import router from "./router";
+
 const app = new Vue({
     el: '#app',
     router,
