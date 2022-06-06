@@ -36,6 +36,7 @@ Route::resource('/masterdata', MasterDataController::class);
 Route::get('load-ticket-issuance',[MasterDataController::class,'loadTicketIssuance']);
 Route::get('load-ticket-control-number',[MasterDataController::class,'loadTicketControlNumber']);
 Route::get('load-batch-ticket',[MasterDataController::class,'loadBatchTicket']);
+Route::patch('update-ticket-issuance',[MasterDataController::class,'updateTicketIssuance']);
 
 Route::resource('/area',AreaController::class);
 Route::resource('/destination',DestinationController::class);

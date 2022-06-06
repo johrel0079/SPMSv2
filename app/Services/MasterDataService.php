@@ -21,9 +21,9 @@ class MasterDataService
         return $this->MasterDataRepository->loadMasterData();
     }
 
-    public function loadTicketIssuance()
+    public function loadTicketIssuance($id)
     {
-       return $this->MasterDataRepository->loadTicketIssuance();
+       return $this->MasterDataRepository->loadTicketIssuance($id);
     }
 
     public function loadTicketControlNumber($controlno)
@@ -34,5 +34,10 @@ class MasterDataService
     public function loadBatchTicket($ticket)
     {
         return $this->MasterDataRepository->loadBatchTicket($ticket);
+    }
+
+    public function updateTicketIssuance($id,$data)
+    {
+        return $this->MasterDataRepository->updateTicketIssuance($id,$data);
     }
 }
