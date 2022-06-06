@@ -1,3 +1,12 @@
     .table> :not(:first-child) {
         border-top: 0 !important;
     }
+    
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th {
+        font-size: 13px;
+    }
