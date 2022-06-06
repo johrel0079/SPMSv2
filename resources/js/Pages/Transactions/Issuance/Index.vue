@@ -22,8 +22,10 @@
 
                 <b-card class="mt-3">
                     <table-component    
+                        :stickyColumn="false"
+                        :flag="'issuance'"
                         :fields="fields"
-                        :items="for_issue_list"
+                        :items="issuance_list"
                         :perPage="10"
                         :rows="5"
                         :status="''"
@@ -46,54 +48,46 @@ export default
         return {
             fields: [
             {
-                key: 'whe',
+                key: 'select',
+                label: 'With Ticket'
+            },
+            {
+                key: 'control_no',
                 sortable: true
             },
             {
-                key: 'issued_date',
+                key: 'delivery_date',
                 sortable: true
             },
             {
-                key: 'item',
+                key: 'destination',
                 sortable: true
             },
             {
-                key: 'barcode',
-                sortable: true
-            },
-            {
-                key: 'control',
-                sortable: true
-            },
-            {
-                key: 'destination_name',
-                sortable: true
-            },
-            {
-                key: 'payee_code',
-                sortable: true
-            },
-            {
-                key: 'with_ticket',
+                key: 'issuance_date',
                 sortable: true
             },
             ],
-            for_issue_list: [{
-                whe: 'C3',
-                issued_date: '06/06/2022',
-                item: 'KD03869-Y124',
-                barcode: 'MM4P1395701',
-                control: 'C3-PML-22-0001',
-                destination_name: 'SRU (SGIC-LAG)',
-                payee_code: '90000209207'
-            }],
+            issuance_list: []
         };
        
     },
     mounted(){
-       
+    this.getList();
     },
     methods: {
+        getList(){
+            this.$http.get('api/load-ticket-issuance')
+                .then((response) => {
+                    this.issuance_list = response.data.data
+                 })
+                .catch((error) => {
+                    this.toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+        },
        batchPrinting()
        {
            alert(1)
