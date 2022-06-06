@@ -18,11 +18,12 @@ body {
 .page-content {
     width: 100%;
     min-height: 70vh;
-    padding: 30px 30px 30px 30px !important;
+    padding: 20px 20px 20px 20px !important;
     z-index: 20;
     .bg-color {
         background-color: #f8fafc;
-        min-height: 80vh !important;
+        min-height: 95vh !important;
+        height: 95vh;
         border: 1px solid #f8fafc; // box-shadow: 3px 3px 3px 3px grey !important;
         overflow-y: scroll;
     }
