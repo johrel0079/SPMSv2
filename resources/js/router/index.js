@@ -5,6 +5,7 @@ import store from "../store";
 import Login from '../Pages/Login'
 import Dashboard from '../Pages/Dashboard'
 import AreaCode from '../Pages/Management/AreaCode/Index'
+import MasterData from "../Pages/Monitoring/MasterData/Index"
 
 
 
@@ -35,6 +36,15 @@ const routes = [
 		component: AreaCode,
 		meta: {
 			title: 'Area Code',
+			requiredAuth: true
+		}
+	},
+	{
+		path: "/monitoring/master-data",
+		name: 'monitoring/master-data',
+		component: MasterData,
+		meta: {
+			title: 'Master Data',
 			requiredAuth: true
 		}
 	}

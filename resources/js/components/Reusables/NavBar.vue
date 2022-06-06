@@ -21,6 +21,15 @@
             Dashboard
           </b-nav-item>
 
+          <b-nav-item-dropdown 
+            class="mr-3"
+            text="Monitoring"
+            right>
+            <b-dropdown-item @click="masterData()">
+              Masterdata
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+
           <b-nav-item-dropdown
           class="mr-3"
             text="Transactions"
@@ -93,6 +102,9 @@ export default {
       },
       areaCode(){
         this.$router.push({name: 'area-code'});
+      },
+      masterData(){
+        this.$router.push({name: 'monitoring/master-data'});
       }
     }
 }
