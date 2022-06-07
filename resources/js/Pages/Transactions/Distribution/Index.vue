@@ -103,7 +103,7 @@ export default
 {
     data(){
         return {
-            picker: {},
+            picker: [],
             barcode: '',
             fields: [
             // {
@@ -177,7 +177,6 @@ export default
                     }else{
                         this.$toast.warning("Item doesn't exist");
                     }
-
                     
                  })
                 .catch((error) => {
@@ -200,25 +199,32 @@ export default
             return total_quantity;
         },
         submitSave(){
-
-             let distribution_id = [];
-            this.distribution_list.forEach(selected => {
-               distribution_id.push(selected.id);
-           });
-        //    
-           let data = {
-               master_data_id : distribution_id,
-               picker_user_id : this.picker.id
-           }
-           this.$http.post('api/distribution', data)
+            if(!this.picker){
+                this.$toast.warning("Picker is required");
+            }else if(!this.ticket_count){
+                this.$toast.warning("Barcode is required");
+            }else{
+                let distribution_id = [];
+                this.distribution_list.forEach(selected => {
+                    distribution_id.push(selected.id);
+                });
+         
+                let data = {
+                    master_data_id : distribution_id,
+                    picker_user_id : this.picker.id
+                }
+                this.$http.post('api/distribution', data)
                 .then((response) => {
                     this.$toast.success(response.data.message);
                     this.distribution_list = [];
-                    this.picker = {};
+                    this.picker = [];
 
                 }).catch((response) => {
                     console.log(response);
                 })
+
+            }
+          
         }
     }
 }
