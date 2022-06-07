@@ -170,10 +170,15 @@ export default
             if(is_exist){
                  this.$http.get('api/distribution/' + ticket_no)
                 .then((response) => {
-                    this.distribution_list.push(response.data.data[0]);
-                    this.ticket_count = this.distribution_list.length;
-                    console.log(this.distribution_list);
-                    this.barcode = '';
+                    if(response.data.data.length!=0){
+                        this.distribution_list.push(response.data.data[0]);
+                        this.ticket_count = this.distribution_list.length;
+                        this.barcode = '';
+                    }else{
+                        this.$toast.warning("Item doesn't exist");
+                    }
+
+                    
                  })
                 .catch((error) => {
                     this.$toast.error("Something went wrong");
