@@ -23,7 +23,6 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Vuex);
 
-<<<<<<< HEAD
 // import "../src/template/assets/sass/views/custom-tabs.scss";
 // import "../src/template/assets/sass/views/custom-cards.scss";
 // import VuePapaParse from 'vue-papa-parse'
@@ -36,11 +35,9 @@ Vue.use(Vuex);
 import Multiselect from 'vue-multiselect';
 import "vue-multiselect/dist/vue-multiselect.min.css";
 Vue.component('multiselect', Multiselect)
-=======
 import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
->>>>>>> dd2c0893bebe1ebffe2cd65ba176807f4dbbff88
 
 const options = {
     position: "top-right",
