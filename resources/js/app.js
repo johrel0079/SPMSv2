@@ -31,6 +31,9 @@ Vue.use(IconsPlugin)
 // import "vue-multiselect/dist/vue-multiselect.min.css";
 // import VueMask from 'v-mask'
 // import SearchTemplate from "./views/ReUsables/SearchTemplate.vue";
+import Multiselect from 'vue-multiselect';
+import "vue-multiselect/dist/vue-multiselect.min.css";
+Vue.component('multiselect', Multiselect)
 
 
 Vue.use(Vuex);
