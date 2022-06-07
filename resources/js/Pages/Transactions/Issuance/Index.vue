@@ -79,7 +79,7 @@ export default
     },
     methods: {
         getList(){
-            this.$http.get('api/load-ticket-issuance')
+            this.$http.get('api/load-ticket-issuance/1')
                 .then((response) => {
                     this.issuance_list = response.data.data
                     console.log(response);
@@ -93,9 +93,26 @@ export default
         },
         getSelected(value){
             this.selected_list = value;
+            console.log(value);
         },
        batchPrinting()
        {
+            let select_id = [];
+           this.selected_list.forEach(selected => {
+               select_id.push(selected.id);
+           });
+        //    
+           let data = {
+               master_data_id : select_id
+           }
+           console.log(data);
+           this.$http.post('api/issuance', data)
+                .then((response) => {
+                    console.log(response);
+                    this.getList();
+                }).catch((response) => {
+                    console.log(response);
+                })
            alert(1)
        }
     }
