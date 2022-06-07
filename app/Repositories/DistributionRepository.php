@@ -23,6 +23,7 @@ class DistributionRepository {
 
     public function create($data)
     {
-        return $this->Distribution->create($data);
+    
+        return $this->Distribution->insert($data);
     }
 }

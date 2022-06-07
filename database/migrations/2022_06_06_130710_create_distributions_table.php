@@ -16,7 +16,7 @@ class CreateDistributionsTable extends Migration
         Schema::create('distributions', function (Blueprint $table) {
             $table->id();
             $table->integer('picker_user_id');
-            $table->integer('process_masterlist_id');
+            $table->integer('master_data_id');
             $table->integer('distributor_user_id');
             $table->timestamps();
             $table->softDeletes();

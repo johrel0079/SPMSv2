@@ -54,7 +54,7 @@ class DistributionController extends Controller
     {
         $data = [
             'picker_user_id' => $request->picker_user_id,
-            'process_masterlist_id' => $request->process_masterlist_id,
+            'master_data_id' => $request->master_data_id,
             'distributor_user_id' => Auth::id()
         ];
 
