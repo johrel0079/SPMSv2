@@ -50,11 +50,11 @@ class MasterDataRepository
             ->get();
     }
 
-    public function updateTicketIssuance($id,$data)
+    public function updateTicketIssuance($id)
     {   
         return $this->MasterData
                 ->whereIn('id', $id)
-                ->update(['process_masterlist_id' => $data]);
+                ->update(['process_masterlist_id' => 2]);
     }
 
 }

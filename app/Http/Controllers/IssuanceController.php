@@ -47,13 +47,13 @@ class IssuanceController extends Controller
         $result = $this->successResponse("Inserted Successfully");
 
         try{
-
             $data = [
                 'user_id' => Auth::id(),
                 'master_data_id' => $request->master_data_id
             ];
 
             $result ['data'] = $this->IssuanceService->create($data);
+            
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
         }

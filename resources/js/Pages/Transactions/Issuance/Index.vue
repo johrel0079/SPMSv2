@@ -113,7 +113,6 @@ export default
                 }).catch((response) => {
                     console.log(response);
                 })
-           alert(1)
        }
     }
 }

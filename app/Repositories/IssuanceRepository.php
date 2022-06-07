@@ -13,7 +13,7 @@ class IssuanceRepository {
 
     public function create($data)
     {
-        return $this->Issuance->create($data);
+        return $this->Issuance->insert($data);
     }
 
 }
