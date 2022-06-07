@@ -24,7 +24,7 @@ class IssuanceService{
             ];
         }
 
-        $this->MasterDataRepository->updateTicketIssuance($data['master_data_id']);
+        $this->MasterDataRepository->updateProcessMasterlistId($data['master_data_id'],2);
 
         return $this->IssuanceRepository->create($new_data);
 
