@@ -24,24 +24,28 @@ use App\Http\Controllers\DistributionController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::post('/login', [UserController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/user-authenticate', [UserController::class, 'getAuthenticated']);
     Route::get('/logout', [UserController::class, 'logout']);
+
+    Route::resource('/masterdata', MasterDataController::class);
+    Route::get('/load-ticket-issuance/{id}',[MasterDataController::class,'loadTicketIssuance']);
+    Route::get('load-ticket-control-number',[MasterDataController::class,'loadTicketControlNumber']);
+    Route::get('load-batch-ticket',[MasterDataController::class,'loadBatchTicket']);
+    Route::patch('/update-ticket-issuance',[MasterDataController::class,'updateTicketIssuance']);
+
+    Route::resource('/area',AreaController::class);
+    Route::resource('/destination',DestinationController::class);
+
+    Route::resource('/issuance',IssuanceController::class);
+
+    Route::resource('/distribution', DistributionController::class);
+    
+  
+    Route::get('/load-user',[UserController::class,'index']);
 });
 
-Route::post('/login', [UserController::class, 'login']);
-Route::get('/load-user',[UserController::class,'index']);
 
-Route::resource('/masterdata', MasterDataController::class);
 
-Route::get('load-ticket-issuance',[MasterDataController::class,'loadTicketIssuance']);
-Route::get('load-ticket-control-number',[MasterDataController::class,'loadTicketControlNumber']);
-Route::get('load-batch-ticket',[MasterDataController::class,'loadBatchTicket']);
-Route::patch('update-ticket-issuance',[MasterDataController::class,'updateTicketIssuance']);
 
-Route::resource('/area',AreaController::class);
-Route::resource('/destination',DestinationController::class);
-
-Route::resource('/issuance',IssuanceController::class);
-
-Route::resource('/distribution', DistributionController::class);

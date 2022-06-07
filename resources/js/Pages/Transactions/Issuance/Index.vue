@@ -22,14 +22,17 @@
 
                 <b-card class="mt-3">
                     <table-component    
+                        :stickyColumn="false"
+                        :flag="'issuance'"
                         :fields="fields"
-                        :items="for_issue_list"
+                        :items="issuance_list"
                         :perPage="10"
                         :rows="5"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
-                        :is_select= "true">
+                        :is_select= "true"
+                        @selectData="getSelected">
                         </table-component>
                 </b-card>  
             </div>
@@ -46,57 +49,70 @@ export default
         return {
             fields: [
             {
-                key: 'whe',
+                key: 'select',
+                label: 'With Ticket'
+            },
+            {
+                key: 'control_no',
                 sortable: true
             },
             {
-                key: 'issued_date',
+                key: 'delivery_date',
                 sortable: true
             },
             {
-                key: 'item',
+                key: 'destination',
                 sortable: true
             },
             {
-                key: 'barcode',
-                sortable: true
-            },
-            {
-                key: 'control',
-                sortable: true
-            },
-            {
-                key: 'destination_name',
-                sortable: true
-            },
-            {
-                key: 'payee_code',
-                sortable: true
-            },
-            {
-                key: 'with_ticket',
+                key: 'issuance_date',
                 sortable: true
             },
             ],
-            for_issue_list: [{
-                whe: 'C3',
-                issued_date: '06/06/2022',
-                item: 'KD03869-Y124',
-                barcode: 'MM4P1395701',
-                control: 'C3-PML-22-0001',
-                destination_name: 'SRU (SGIC-LAG)',
-                payee_code: '90000209207'
-            }],
+            issuance_list: [],
+            selected_list: []
         };
        
     },
     mounted(){
-       
+    this.getList();
     },
     methods: {
+        getList(){
+            this.$http.get('api/load-ticket-issuance/1')
+                .then((response) => {
+                    this.issuance_list = response.data.data
+                    console.log(response);
+                 })
+                .catch((error) => {
+                    this.toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+        },
+        getSelected(value){
+            this.selected_list = value;
+            console.log(value);
+        },
        batchPrinting()
        {
-           alert(1)
+            let select_id = [];
+           this.selected_list.forEach(selected => {
+               select_id.push(selected.id);
+           });
+        //    
+           let data = {
+               master_data_id : select_id
+           }
+           console.log(data);
+           this.$http.post('api/issuance', data)
+                .then((response) => {
+                    console.log(response);
+                    this.getList();
+                }).catch((response) => {
+                    console.log(response);
+                })
        }
     }
 }

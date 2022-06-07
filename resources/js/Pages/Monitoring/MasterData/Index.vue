@@ -22,6 +22,7 @@
                                     </b-col>
                                     <b-col cols="3">
                                     <b-button
+                                        :disabled="is_loading"
                                         variant="primary" size="sm" class="mt-1"
                                         id="button-upload"
                                         type="submit"
@@ -137,6 +138,7 @@ export default
             },
             ],
             id: 0,
+            is_loading: false,
         };
        
     },
@@ -148,40 +150,42 @@ export default
           this.$http.get('api/masterdata')
                 .then((response) => {
                     this.master_data_list = response.data.data
-                    console.log(response);
                 });
       },
       uploadFile() {
-           if(document.getElementById("input-file").value == "")
-      {
-        this.toast("Warning", "Please select file to upload.");
-      }
-      else{
-        var formData = new FormData();
-        var excelFile = document.querySelector("#input-file");
-        let fileType = excelFile.files[0].name.split('.')[1];
-          
-        if((fileType !== 'csv') && (fileType !== 'xlsx')){
-          document.getElementById("input-file").value = "";
-          this.toast("Warning", "Please Upload a CSV or XLSX file type only.");
+        if(document.getElementById("input-file").value == "")
+        {
+            this.$toast.warning("Please select file to upload.");
         }
         else{
-        formData.append("file", excelFile.files[0]);
-         this.$http.post('api/masterdata', formData)
-        .then((response)=>{
-            this.getList();
-          console.log(response);
-         
-          })
-          .catch((error) => {
-            this.toast("error", "Something went wrong");
+            this.is_loading=true;
+            var formData = new FormData();
+            var excelFile = document.querySelector("#input-file");
+            let fileType = excelFile.files[0].name.split('.')[1];
+            
+            if((fileType !== 'csv') && (fileType !== 'xlsx')){
             document.getElementById("input-file").value = "";
-            console.log(error);
-          })
-          .finally(() => {
-          });
+            this.$toast.warning("Please Upload a CSV or XLSX file type only.");
+            }
+            else{
+            formData.append("file", excelFile.files[0]);
+            this.$http.post('api/masterdata', formData)
+            .then((response)=>{
+                this.getList();
+                document.getElementById("input-file").value = "";
+                this.$toast.success(response.data.message);
+                this.is_loading=false;
+            })
+            .catch((error) => {
+                this.toast("error", "Something went wrong");
+                document.getElementById("input-file").value = "";
+                console.log(error);
+                this.is_loading=false;
+            })
+            .finally(() => {
+            });
+            }
         }
-      }
     },
       
     }

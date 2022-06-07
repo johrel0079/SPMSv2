@@ -29,7 +29,8 @@ class MasterDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|mimes:xlsx'
+            'ticket_no' => 'exists:master_data,ticket_no',
+            'file' => 'required|mimes:xlsx,csv'
         ];
     }
 

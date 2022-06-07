@@ -25,7 +25,7 @@ class MasterDataRepository
     {
         return $this->MasterData
             ->distinct('order_download_no')
-            ->selectRaw('order_download_no as control_no, ticket_issue_date as issuance_date, delivery_due_date as delivery_date, destination_code as destination')
+            ->selectRaw('id, order_download_no as control_no, ticket_issue_date as issuance_date, delivery_due_date as delivery_date, destination_code as destination')
             ->where('process_masterlist_id', $id)
             ->orderBy('ticket_issue_date','asc')
             ->orderBy('order_download_no','asc')
@@ -50,11 +50,11 @@ class MasterDataRepository
             ->get();
     }
 
-    public function updateTicketIssuance($id,$data)
+    public function updateTicketIssuance($id)
     {   
         return $this->MasterData
                 ->whereIn('id', $id)
-                ->update(['process_masterlist_id' => $data]);
+                ->update(['process_masterlist_id' => 2]);
     }
 
 }

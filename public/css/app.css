@@ -11288,16 +11288,44 @@ textarea.form-control-lg {
 }
 html,
 body {
-  background: #eef2f3;
-  width: 100%;
+  background: #eef2f3 !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+  z-index: 20 !important;
+  background: url(/../assets/image/bg-logo.jpg) !important;
+  background-size: cover !important;
+  overflow-y: hidden !important;
+}
+
+.main-content {
+  min-height: 100%;
   min-height: 100vh;
-  /* padding: 30px 30px 30px 30px; */
+  align-items: center;
+}
+
+.page-content {
+  width: 100%;
+  min-height: 70vh;
+  padding: 20px 20px 20px 20px !important;
   z-index: 20;
 }
-.div_class{
-  background: #F2F3F7;
-  min-height: 87vh;
-  margin: 30px 30px 30px;
-  border-radius: 5px;
-  padding: 10px 10px 10px 10px;
+.page-content .bg-color {
+  background-color: #f8fafc;
+  min-height: 95vh !important;
+  height: 95vh;
+  border: 1px solid #f8fafc;
+  overflow-y: scroll;
+}
+
+.table > :not(:first-child) {
+  border-top: 0 !important;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  font-size: 13px;
 }
