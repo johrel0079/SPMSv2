@@ -75,9 +75,18 @@ class DistributionController extends Controller
      * @param  \App\Models\Distribution  $distribution
      * @return \Illuminate\Http\Response
      */
-    public function show(Distribution $distribution)
+    public function show($ticket_no)
     {
-        //
+
+        $result = $this->successResponse("Load Successfully");
+
+        try{
+            $result ['data'] = $this->DistributionService->showDistribution($ticket_no);
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
