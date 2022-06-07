@@ -69,6 +69,7 @@
                             class="mt-1"
                             id="button-save"
                             type="submit"
+                            @click="submitSave()"
                             title="Click to Save">Save
                         </b-button>
                         <b-button
@@ -192,6 +193,27 @@ export default
                total_quantity = total_quantity + this.distribution_list[key].delivery_qty
             }
             return total_quantity;
+        },
+        submitSave(){
+
+             let distribution_id = [];
+            this.distribution_list.forEach(selected => {
+               distribution_id.push(selected.id);
+           });
+        //    
+           let data = {
+               master_data_id : distribution_id,
+               picker_user_id : this.picker.id
+           }
+           this.$http.post('api/distribution', data)
+                .then((response) => {
+                    this.$toast.success(response.data.message);
+                    this.distribution_list = [];
+                    this.picker = {};
+
+                }).catch((response) => {
+                    console.log(response);
+                })
         }
     }
 }
