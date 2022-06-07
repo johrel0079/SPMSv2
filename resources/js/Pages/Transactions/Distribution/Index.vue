@@ -7,12 +7,12 @@
                 <h5 class="mt-3">Picking Ticket Distribution</h5>   
                 <b-row class="mt-5">
                     <b-col cols="2">
-                        <label for="picker-id">Picker ID No.:</label>
+                        <label for="picker-id">Picker:</label>
                     </b-col>
                     <b-col cols="3">
                         <multiselect 
                             id="picker_id" 
-                            v-model="picker_id"
+                            v-model="picker"
                             name="picker_id"
                             :options="picker_options" 
                             :searchable="true"
@@ -28,6 +28,7 @@
                     </b-col>
                     <b-col cols="3">
                         <b-form-input
+                            @keyup.enter="submitBarcode(barcode)"
                             id="barcode"
                             v-model="barcode"
                             placeholder="Barcode"
@@ -54,10 +55,10 @@
 
                 <b-row class="mt-3">
                     <b-col cols="6">
-                        <label for="total-ticket">Total Ticket:</label>
+                        <label for="total-ticket">Total Ticket:</label> {{ticket_count}}
                     </b-col>
                     <b-col cols="6">
-                        <label for="total-qty">Total Qty:</label>
+                        <label for="total-qty">Total Qty:</label> {{getQuantityCount()}}
                     </b-col>
                 </b-row>
 
@@ -101,32 +102,38 @@ export default
 {
     data(){
         return {
-            picker_id: {},
+            picker: {},
             barcode: '',
             fields: [
+            // {
+            //     key: 'no',
+            //     sortable: true
+            // },
             {
-                key: 'no',
+                key: 'item_no',
+                label: 'Part Number',
                 sortable: true
             },
             {
-                key: 'part_number',
+                key: 'destination_code',
+                label: 'Destination',
                 sortable: true
             },
             {
-                key: 'destination',
+                key: 'ticket_no',
+                label: 'Barcode',
                 sortable: true
             },
             {
-                key: 'barcode',
+                key: 'delivery_qty',
+                label: 'Quantity',
                 sortable: true
             },
-            {
-                key: 'quantity',
-                sortable: true
-            },
+            
             ],
             distribution_list: [],
-            picker_options: []
+            picker_options: [],
+            ticket_count: 0,
         };
        
     },
@@ -147,12 +154,45 @@ export default
                     }
                  })
                 .catch((error) => {
-                    this.toast.error("Something went wrong");
+                    this.$toast.error("Something went wrong");
                     console.log(error);
                 })
                 .finally(() => {
                 });
         },
+        submitBarcode(ticket_no){
+            let is_exist = this.distribution_list.findIndex(function(list) {
+                return (list.ticket_no == ticket_no) ?  true : false
+                   
+            });
+
+            if(is_exist){
+                 this.$http.get('api/distribution/' + ticket_no)
+                .then((response) => {
+                    this.distribution_list.push(response.data.data[0]);
+                    this.ticket_count = this.distribution_list.length;
+                    console.log(this.distribution_list);
+                    this.barcode = '';
+                 })
+                .catch((error) => {
+                    this.$toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+            }else{
+                this.$toast.warning("Item already exist");
+                this.barcode = '';
+            }   
+            
+        },
+        getQuantityCount(){
+            let total_quantity = 0; 
+            for (const key in this.distribution_list) {
+               total_quantity = total_quantity + this.distribution_list[key].delivery_qty
+            }
+            return total_quantity;
+        }
     }
 }
 </script>
