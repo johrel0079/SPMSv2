@@ -40,4 +40,8 @@ class MasterDataService
     {
         return $this->MasterDataRepository->updateTicketIssuance($id,$data);
     }
+    public function showTicket($process_masterlist_id,$ticket_no)
+    {
+        return $this->MasterDataRepository->showTicket($process_masterlist_id,$ticket_no);
+    }
 }
