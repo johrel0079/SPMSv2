@@ -39,6 +39,7 @@
                 <b-card class="mt-3">
                     <table-component    
                         :stickyColumn="true"
+                        :flag="'distribution'"
                         :fields="fields"
                         :items="distribution_list"
                         :perPage="10"
@@ -100,7 +101,7 @@ export default
 {
     data(){
         return {
-            picker_id: '',
+            picker_id: {},
             barcode: '',
             fields: [
             {
@@ -125,18 +126,33 @@ export default
             },
             ],
             distribution_list: [],
-            picker_options: [
-                { name: 'Juan dela Cruz', id: '000001' },
-                { name: 'Juana dela Cruz', id: '000002' },
-            ]
+            picker_options: []
         };
        
     },
     mounted(){
-       
+       this.getPicker();
     },
     methods: {
-       
+       getPicker(){
+            this.$http.get('api/load-picker')
+                .then((response) => {
+                    let picker = response.data.data;
+                    console.log(picker);
+                    for (const key in picker) {
+                        this.picker_options.push({
+                            id : picker[key].id,
+                            name: picker[key].first_name + ' ' + picker[key].last_name,
+                        })
+                    }
+                 })
+                .catch((error) => {
+                    this.toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+        },
     }
 }
 </script>
