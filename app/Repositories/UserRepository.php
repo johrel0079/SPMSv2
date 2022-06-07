@@ -55,4 +55,15 @@ class UserRepository
          ]
       );
    }
+   public function loadPicker()
+   {
+      // return $this->user->orderBy('id')->get();
+
+      return $this->user
+                  ->join('roles','users.role_id','=','roles.id')
+                  ->where('users.role_id',2)
+                  ->orderBy('users.role_id')
+                  ->get();
+    
+   }
 }
