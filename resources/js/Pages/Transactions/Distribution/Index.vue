@@ -5,7 +5,7 @@
         <div class="mb-4">
             <div class="container px-3">
                 <h5 class="mt-3">Picking Ticket Distribution</h5>   
-                <b-row class="mt-5">
+                <b-row class="mt-3">
                     <b-col cols="2">
                         <label for="picker-id">Picker:</label>
                     </b-col>

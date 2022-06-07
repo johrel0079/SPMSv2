@@ -100,7 +100,7 @@ const routes = [{
     },
     {
         path: "/transactions/parts-for-dr",
-        name: 'transactions/parts-for-dr',
+        name: 'transactions-parts-for-dr',
         component: PartsForDR,
         meta: {
             title: 'Parts for DR',
