@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::resource('/issuance',IssuanceController::class);
 
     Route::resource('/distribution', DistributionController::class);
-    
+    Route::get('/load-picker',[UserController::class,'loadPicker']);
   
     Route::get('/load-user',[UserController::class,'index']);
 });
