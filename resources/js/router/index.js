@@ -5,13 +5,14 @@ import store from "../store";
 import Login from '../Pages/Login'
 import Dashboard from '../Pages/Dashboard'
 import AreaCode from '../Pages/Management/AreaCode/Index'
+import User from '../Pages/Management/User/Index'
 import MasterData from "../Pages/Monitoring/MasterData/Index"
 import TicketIssuance from "../Pages/Transactions/Issuance/Index"
 import Distribution from "../Pages/Transactions/Distribution/Index"
 import Picking from "../Pages/Transactions/Picking/Index"
 import CheckingAndPalletizing from "../Pages/Transactions/CheckingAndPalletizing/Index"
 import PartsForDR from "../Pages/Transactions/PartsForDR/Index"
-import UpdateDelivery from "../Pages/Transactions/UpdateDelivery/Index"	
+import UpdateDelivery from "../Pages/Transactions/UpdateDelivery/Index"
 
 
 Vue.use(VueRouter);
@@ -35,7 +36,7 @@ const routes = [{
         }
     },
     {
-        path: "/area-code",
+        path: "/management/area-code",
         name: 'area-code',
         component: AreaCode,
         meta: {
@@ -43,69 +44,78 @@ const routes = [{
             requiredAuth: true
         }
     },
-	{
-		path: "/monitoring/master-data",
-		name: 'monitoring/master-data',
-		component: MasterData,
-		meta: {
-			title: 'Master Data',
-			requiredAuth: true
-		}
-	},
-	{
-		path: "/transactions/ticket-issuance",
-		name: 'transactions/ticket-issuance',
-		component: TicketIssuance,
-		meta: {
-			title: 'Ticket Issuance',
-			requiredAuth: true
-		}
-	},
-	{
-		path: "/transactions/distribution",
-		name: 'transactions/distribution',
-		component: Distribution,
-		meta: {
-			title: 'Distribution',
-			requiredAuth: true
-		}
-	},
-	{
-		path: "/transactions/picking",
-		name: 'transactions/picking',
-		component: Picking,
-		meta: {
-			title: 'Picking',
-			requiredAuth: true
-		}
-	},
-	{
-		path: "/transactions/checking-and-palletizing",
-		name: 'transactions/checking-and-palletizing',
-		component: CheckingAndPalletizing,
-		meta: {
-			title: 'Checking and Palletizing',
-			requiredAuth: true
-		}
-	},
-	{
-		path: "/transactions/parts-for-dr",
-		name: 'transactions/parts-for-dr',
-		component: PartsForDR,
-		meta: {
-			title: 'Parts for DR',
-			requiredAuth: true
-		}
-	},
-	{
-		path: "/transactions/update-delivery",
-		name: 'transactions/update-delivery',
-		component: UpdateDelivery,
-		meta: {
-			title: 'Update Delivery',
-			requiredAuth: true
-		}
-	},
+    {
+        path: "/management/user",
+        name: 'user',
+        component: User,
+        meta: {
+            title: 'User',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/monitoring/master-data",
+        name: 'monitoring-master-data',
+        component: MasterData,
+        meta: {
+            title: 'Master Data',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/transactions/ticket-issuance",
+        name: 'transactions-ticket-issuance',
+        component: TicketIssuance,
+        meta: {
+            title: 'Ticket Issuance',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/transactions/distribution",
+        name: 'transactions-distribution',
+        component: Distribution,
+        meta: {
+            title: 'Distribution',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/transactions/picking",
+        name: 'transactions-picking',
+        component: Picking,
+        meta: {
+            title: 'Picking',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/transactions/checking-and-palletizing",
+        name: 'transactions-checking-and-palletizing',
+        component: CheckingAndPalletizing,
+        meta: {
+            title: 'Checking and Palletizing',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/transactions/parts-for-dr",
+        name: 'transactions/parts-for-dr',
+        component: PartsForDR,
+        meta: {
+            title: 'Parts for DR',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/transactions/update-delivery",
+        name: 'transactions-update-delivery',
+        component: UpdateDelivery,
+        meta: {
+            title: 'Update Delivery',
+            requiredAuth: true
+        }
+    },
     {
         path: '*',
         redirect: '/login'
