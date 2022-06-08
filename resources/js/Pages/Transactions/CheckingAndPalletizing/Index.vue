@@ -37,6 +37,7 @@
                 <b-row class="mt-3">
                     <b-col>
                         <b-button
+                            @click="submitFinish()"
                             style="float:right"
                             variant="primary"
                             class="mt-1"
@@ -105,6 +106,7 @@ export default
                     console.log(response);
                     if(response.data.data.length!=0){
                         this.checking_list.push(response.data.data[0]);
+                        console.log(this.checking_list);
                         // this.finish_count = this.picking_list.length;
                         this.barcode = '';
                     }else{
@@ -124,6 +126,30 @@ export default
             }   
             
         },
+        submitFinish(){
+            if(!this.checking_list){
+                this.$toast.warning("Barcode is required");
+            }else{
+                let checking_id = [];
+                this.checking_list.forEach(selected => {
+                    checking_id.push(selected.id);
+                });
+         
+                let data = {
+                    master_data_id : checking_id,
+                }
+                this.$http.post('api/checking', data)
+                .then((response) => {
+                    console.log(response)
+                    this.$toast.success(response.data.message);
+                    this.checking_list = [];
+                }).catch((response) => {
+                    console.log(response);
+                })
+
+            }
+          
+        }
     }
 }
 </script>
