@@ -6,6 +6,7 @@ use App\Models\Picking;
 use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Services\PickingService;
+use Auth;
 
 class PickingController extends Controller
 {
@@ -44,7 +45,21 @@ class PickingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->successResponse("Inserted Successfully");
+
+        try{
+            $data = [
+                'user_id' => Auth::id(),
+                'master_data_id' => $request->master_data_id
+            ];
+
+            $result ['data'] = $this->PickingService->create($data);
+            
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**

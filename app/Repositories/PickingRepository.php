@@ -4,12 +4,14 @@ namespace App\Repositories;
 
 use App\Models\MasterData;
 use App\Models\Distribution;
+use App\Models\Picking;
 
 
 class PickingRepository
 {
     public function __construct()
     {
+        $this->Picking = new Picking();
         $this->MasterData = new MasterData();
         $this->Distribution = new Distribution();
     }
@@ -23,6 +25,11 @@ class PickingRepository
         ->where('master_data.ticket_no','=', $ticket_no)
         ->where('distributions.picker_user_id','=', $user_id)
         ->get();
+    }
+
+    public function create($data)
+    {
+        return $this->Picking->insert($data);
     }
 
 
