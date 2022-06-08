@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'position'      => 'Guess',
             'email'         => 'Guess1@email.com',
             'area_id'       => 1,
-            'role_id'       => 5
+            'role_id'       => 2
         ]);
         User::create([
             'employee_number'  => 024,
