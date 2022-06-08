@@ -45,9 +45,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/load-picker',[UserController::class,'loadPicker']);
   
     Route::get('/load-user',[UserController::class,'index']);
+    Route::resource('/picking', PickingController::class);
+  
 });
 
-Route::resource('/picking', PickingController::class);
+
 
 
 
