@@ -175,7 +175,7 @@ export default
             }else{
                 let picking_id = [];
                 this.picking_list.forEach(selected => {
-                    picking_id.push(selected.id);
+                    picking_id.push(selected.master_data_id);
                 });
          
                 let data = {
