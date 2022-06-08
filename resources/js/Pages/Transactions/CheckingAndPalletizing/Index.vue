@@ -105,9 +105,17 @@ export default
                 .then((response) => {
                     console.log(response);
                     if(response.data.data.length!=0){
-                        this.checking_list.push(response.data.data[0]);
+                        if(this.checking_list.length!=0){
+                            let order_download_no = this.checking_list[0].order_download_no;
+                            if(order_download_no == response.data.data[0].order_download_no){
+                                this.$toast.warning("Barcode another ticket.");
+                            }else{
+                                this.checking_list.push(response.data.data[0]);
+                            }
+                        }else{
+                            this.checking_list.push(response.data.data[0]);
+                        }
                         console.log(this.checking_list);
-                        // this.finish_count = this.picking_list.length;
                         this.barcode = '';
                     }else{
                         this.$toast.warning("Item doesn't exist");
@@ -142,7 +150,7 @@ export default
                 .then((response) => {
                     console.log(response)
                     this.$toast.success(response.data.message);
-                    this.checking_list = [];
+                    // this.checking_list = [];
                 }).catch((response) => {
                     console.log(response);
                 })
