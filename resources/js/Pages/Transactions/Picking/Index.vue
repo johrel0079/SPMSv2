@@ -76,12 +76,13 @@
                     <b-col>
                         <label for="finish-count">Finished Count:</label>  {{ finish_count}}
                         <b-button
+                            @click="submitFinish()"
                             style="float:right"
                             variant="primary"
                             class="mt-1"
                             id="button-finished"
                             type="submit"
-                            title="Click to Finished">Finished
+                            title="Click to Finished">Finish
                         </b-button>
                     </b-col>
                 </b-row>
@@ -168,6 +169,30 @@ export default
             }   
             
         },
+         submitFinish(){
+            if(!this.finish_count){
+                this.$toast.warning("Barcode is required");
+            }else{
+                let picking_id = [];
+                this.picking_list.forEach(selected => {
+                    picking_id.push(selected.id);
+                });
+         
+                let data = {
+                    master_data_id : picking_id,
+                }
+                this.$http.post('api/picking', data)
+                .then((response) => {
+                    console.log(response)
+                    this.$toast.success(response.data.message);
+                    this.picking_list = [];
+                }).catch((response) => {
+                    console.log(response);
+                })
+
+            }
+          
+        }
     }
 }
 </script>
