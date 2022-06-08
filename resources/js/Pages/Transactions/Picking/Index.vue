@@ -49,8 +49,9 @@
                     </b-col>
                     <b-col cols="3">
                         <b-form-input
+                            @keyup.enter="submitBarcode(barcode)"
                             id="barcode"
-                            v-model="barcode"
+                            v-model="barcode"   
                             placeholder="Barcode"
                             required
                         ></b-form-input>
@@ -58,6 +59,7 @@
                 </b-row>
                 <b-card class="mt-3">
                     <table-component    
+                        :flag="'picking'"
                         :stickyColumn="true"
                         :fields="fields"
                         :items="picking_list"
@@ -97,15 +99,8 @@ export default
         return {
             fields: [
             {
-                key: 'no',
-                sortable: true
-            },
-            {
-                key: 'issued_date',
-                sortable: true
-            },
-            {
-                key: 'account_number',
+                label: 'Issue Date',
+                key: 'ticket_issue_date',
                 sortable: true
             },
             {
@@ -113,25 +108,28 @@ export default
                 sortable: true
             },
             {
-                key: 'ticket_count',
+                key: 'item_no',
                 sortable: true
             },
             {
-                key: 'finished_count',
+                key: 'ticket_no',
+                label: 'Barcode',
                 sortable: true
             },
             {
-                key: 'returned_ticket',
+                key: 'delivery_qty',
+                label: 'Quantity',
                 sortable: true
             },
             {
-                key: 'date_barcoded',
+                label: 'Date Barcoded',
+                key: 'delivery_inst_date',
                 sortable: true
             },
             ],
             picking_list: [],
             barcode: '',
-            finish_count: '5'
+            finish_count: 0,
         };
        
     },
@@ -139,7 +137,37 @@ export default
        
     },
     methods: {
-       
+        submitBarcode(ticket_no){
+            let is_exist = this.picking_list.findIndex(function(list) {
+                return (list.ticket_no == ticket_no) ?  true : false
+                   
+            });
+
+            if(is_exist){
+                 this.$http.get('api/picking/' + ticket_no)
+                .then((response) => {
+                    console.log(response);
+                    if(response.data.data.length!=0){
+                        this.picking_list.push(response.data.data[0]);
+                        this.finish_count = this.picking_list.length;
+                        this.barcode = '';
+                    }else{
+                        this.$toast.warning("Item doesn't exist");
+                    }
+                    
+                 })
+                .catch((error) => {
+                    this.$toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+            }else{
+                this.$toast.warning("Item already exist");
+                this.barcode = '';
+            }   
+            
+        },
     }
 }
 </script>
