@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'role_id'       => 1
         ]);
         User::create([
-            'employee_number'  => 023,
+            'employee_number'  => 124,
             'password'      => bcrypt('123'),
             'first_name'    => 'Name 1',
             'last_name'     => 'Lastname',
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'role_id'       => 2
         ]);
         User::create([
-            'employee_number'  => 024,
+            'employee_number'  => 125,
                 'password'      => bcrypt('123'),
                 'first_name'    => 'Name 2',
                 'last_name'     => 'Lastname',
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
                 'role_id'       => 5
         ]);
         User::create([
-            'employee_number'  => 025,
+            'employee_number'  => 126,
                 'password'      => bcrypt('123'),
                 'first_name'    => 'Name 3',
                 'last_name'     => 'Lastname',
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
                 'role_id'       => 5
         ]);
         User::create([
-            'employee_number'  => 026,
+            'employee_number'  => 127,
             'password'      => bcrypt('123'),
             'first_name'    => 'Name 3',
             'last_name'     => 'Lastname',
