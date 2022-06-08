@@ -55,6 +55,11 @@
         </template>
       </template>
       <template
+        #cell(picker_name)="data"
+      >
+        {{data.item.first_name}} {{data.item.last_name }}
+      </template>
+      <template
         v-if="action_dropdown"
         #cell(action)="data"
       >
