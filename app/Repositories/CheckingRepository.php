@@ -12,9 +12,11 @@ class CheckingRepository
     {
         $this->Checking = new Checking();
         $this->MasterData = new MasterData();
-        $this->Distribution = new Distribution();
     }
 
-
+    public function create($data)
+    {
+        return $this->Checking->insert($data);
+    }
 
 }

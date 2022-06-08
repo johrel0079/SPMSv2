@@ -44,7 +44,21 @@ class CheckingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->successResponse("Inserted Successfully");
+
+        try{
+            $data = [
+                'user_id' => Auth::id(),
+                'master_data_id' => $request->master_data_id
+            ];
+
+            $result ['data'] = $this->CheckingService->create($data);
+            
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
@@ -58,7 +72,7 @@ class CheckingController extends Controller
         $result = $this->successResponse("Load Successfully");
 
         try{
-            $result ['data'] = $this->CheckingService->showDistribution($ticket_no);
+            $result ['data'] = $this->CheckingService->showChecking($ticket_no);
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
         }
