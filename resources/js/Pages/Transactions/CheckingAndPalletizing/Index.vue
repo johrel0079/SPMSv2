@@ -11,6 +11,7 @@
                     </b-col>
                     <b-col cols="3">
                         <b-form-input
+                            @keyup.enter="submitBarcode(barcode)"
                             id="barcode"
                             v-model="barcode"
                             placeholder="Barcode"
@@ -20,6 +21,7 @@
                 </b-row>
                 <b-card class="mt-3">
                     <table-component    
+                        :flag = "'checking'"
                         :stickyColumn="true"
                         :fields="fields"
                         :items="checking_list"
@@ -59,25 +61,28 @@ export default
             barcode: '',
             fields: [
             {
-                key: 'barcode',
+                label: 'Barcode',
+                key: 'ticket_no',
                 sortable: true
             },
             {
-                key: 'part_number',
+                label: 'Part Number',
+                key: 'item_no',
                 sortable: true
             },
             {
-                key: 'quantity',
+                key: 'delivery_qty',
+                label: 'Quantity',
                 sortable: true
             },
             {
                 key: 'order_download_no',
                 sortable: true
             },
-            {
-                key: 'process',
-                sortable: true
-            },
+            // {
+            //     key: 'process',
+            //     sortable: true
+            // },
             ],
             checking_list: [],
             
@@ -88,7 +93,37 @@ export default
        
     },
     methods: {
-       
+        submitBarcode(ticket_no){
+            let is_exist = this.checking_list.findIndex(function(list) {
+                return (list.ticket_no == ticket_no) ?  true : false
+                   
+            });
+
+            if(is_exist){
+                 this.$http.get('api/checking/' + ticket_no)
+                .then((response) => {
+                    console.log(response);
+                    if(response.data.data.length!=0){
+                        this.checking_list.push(response.data.data[0]);
+                        // this.finish_count = this.picking_list.length;
+                        this.barcode = '';
+                    }else{
+                        this.$toast.warning("Item doesn't exist");
+                    }
+                    
+                 })
+                .catch((error) => {
+                    this.$toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+            }else{
+                this.$toast.warning("Item already exist");
+                this.barcode = '';
+            }   
+            
+        },
     }
 }
 </script>
