@@ -19,6 +19,7 @@ class PickingRepository
     public function showPicking($user_id, $ticket_no)
     {
         return $this->MasterData
+        ->selectRaw('master_data.id as master_data_id, master_data.*, users.*',)
         ->join('distributions', 'distributions.master_data_id', '=', 'master_data.id')
         ->join('users', 'users.id', '=', 'distributions.picker_user_id')
         ->where('master_data.process_masterlist_id','=',3)
