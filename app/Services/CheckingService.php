@@ -22,14 +22,23 @@ class CheckingService{
 
     public function create($data)
     {
-    
+        $last_control = $this->CheckingRepository->getLastRecord();
+        $control =1;
+        if($last_control){
+            $pieces = explode("-", $last_control['control_number']);
+            $control= $pieces[4] + 1;
+        }
+        $load_data = $this->MasterDataRepository->loadPerId($data['master_data_id']);
+        $control_no = $load_data[0]->order_download_no . '-' . $control;
+
         for($i = 0; $i < count($data['master_data_id']); $i++)
         {
             $new_data [$i] = 
             [
-                'user_id' => $data['user_id'],
-                'master_data_id' => $data['master_data_id'][$i],
-                'created_at' => now(),
+                'user_id'           => $data['user_id'],
+                'master_data_id'    => $data['master_data_id'][$i],
+                'control_number'    => $control_no, 
+                'created_at'        => now(),
             ];
         }
        
@@ -37,4 +46,5 @@ class CheckingService{
 
         return $this->CheckingRepository->create($new_data);
     }
+
 }

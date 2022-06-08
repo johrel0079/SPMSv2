@@ -19,4 +19,10 @@ class CheckingRepository
         return $this->Checking->insert($data);
     }
 
+    public function getLastRecord(){
+        return $this->Checking
+                    ->select('control_number')
+                    ->latest()->first();
+    }
+
 }

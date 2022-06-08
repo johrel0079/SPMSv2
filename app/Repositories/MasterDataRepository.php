@@ -66,4 +66,12 @@ class MasterDataRepository
                 ->update(['process_masterlist_id' => $process_masterlist_id]);
     }
 
+    public function loadPerId($id) {
+        return $this->MasterData
+                ->selectRaw('*')
+                ->whereIn('id', $id)
+                ->get();
+            
+    }
+
 }

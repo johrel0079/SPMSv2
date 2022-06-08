@@ -17,6 +17,7 @@ class CreateCheckingsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('master_data_id');
+            $table->string('control_number');
             $table->timestamps();
             $table->softDeletes();
         });
