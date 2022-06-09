@@ -53,6 +53,10 @@ export default
                 label: 'With Ticket'
             },
             {
+                key: 'ticket_no',
+                label: 'Barcode'
+            },
+            {
                 label: 'Control No',
                 key: 'order_download_no',
                 sortable: true
