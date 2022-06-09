@@ -26,5 +26,17 @@ class PartsForDrRepository
                 ->get();
     }
 
+    public function create($data)
+    {
+        return $this->PartsForDr->insert($data); 
+    }
+
+    public function updateProcessMasterlistId($control_number,$process_masterlist_idr){
+        return $this->MasterData
+                ->join('checkings', 'checkings.master_data_id', '=', 'master_data.id')
+                ->whereIn('checkings.control_no', $control_number)
+                ->update(['process_masterlist_id' => $process_masterlist_id]);
+    }
+
 
 }
