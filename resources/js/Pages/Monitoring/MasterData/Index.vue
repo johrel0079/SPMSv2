@@ -33,6 +33,7 @@
                             </b-col>
                         </b-form>
                     </b-row>
+                    <b-card class="mt-3">
                     <table-component    
                         :stickyColumn="true"
                         :fields="fields"
@@ -46,6 +47,7 @@
                         :is_select= "false"
                         >
                     </table-component> 
+                    </b-card>
             </div>
     </div>
 

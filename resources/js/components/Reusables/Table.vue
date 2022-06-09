@@ -14,7 +14,28 @@
         sm="12"
         class="d-flex flex-row-reverse p-0"
       >
-        <b-form
+       <b-row class="mb-3 mr-1 float-right">
+          <b-input-group size="sm">
+              <b-form-input
+                  id="filter-input"
+                  name="search"
+                  type="search"
+                  v-model="filter"
+                  placeholder="Type to Search"
+                  autocomplete="off">
+              </b-form-input>
+              <b-input-group-append>
+                  <b-button 
+                      variant="primary"
+                      title="Click to Clear Inputs"
+                      :disabled="!filter" 
+                      @click="filter = ''">
+                          Clear
+                  </b-button>
+              </b-input-group-append>
+          </b-input-group>
+      </b-row>
+        <!-- <b-form
           v-if="is_search"
           class="mb-3"
         >
@@ -24,7 +45,7 @@
             class="form-control"
             placeholder="Search"
           />
-        </b-form>
+        </b-form> -->
       </b-col>
     </b-row>
     <b-table
