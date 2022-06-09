@@ -14,20 +14,33 @@
                                 <b-row>
                                     <b-col cols="3">
                                     <input
-                                        class="file-input"
+                                        class="upload-input-file"
                                         id="input-file"
                                         name="file"
                                         type="file"
                                         />
                                     </b-col>
-                                    <b-col cols="3">
-                                    <b-button
-                                        :disabled="is_loading"
-                                        variant="primary" size="sm" class="mt-1"
-                                        id="button-upload"
-                                        type="submit"
-                                        title="Click to Upload">Upload
-                                    </b-button>
+                                    <b-col cols="2">
+                                        <b-button
+                                            :disabled="is_loading"
+                                            variant="primary" 
+                                            size="sm" 
+                                            class="mt-1"
+                                            id="button-upload"
+                                            type="submit"
+                                            title="Click to Upload"
+                                            style="width: 100%">Upload
+                                        </b-button>
+                                    </b-col>
+                                    <b-col cols="2">
+                                        <b-button
+                                            variant="primary" 
+                                            size="sm" 
+                                            class="mt-1"
+                                            id="button-sync"
+                                            title="Click to Sync"
+                                             style="width: 100%">Sync
+                                        </b-button>
                                     </b-col>
                                 </b-row>
                             </b-col>
@@ -198,7 +211,7 @@ export default
 </script>
 
 <style scoped>
-.file-input {
+.upload-input-file {
     border:1px gray;
     border-radius:4px;
     color:black;
