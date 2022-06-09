@@ -10,6 +10,7 @@ use App\Services\MasterDataService;
 use App\Traits\ResponseTrait;
 use Auth;
 use Symfony\Component\HttpFoundation\Request;
+use App\Http\Controllers\TicketController;
 
 class MasterDataController extends Controller
 {
@@ -19,6 +20,7 @@ class MasterDataController extends Controller
     public function __construct()
     {
         $this->MasterDataService = new MasterDataService();
+        $this->TicketController = new TicketController();
     }
 
     /**
@@ -193,6 +195,8 @@ class MasterDataController extends Controller
 
         try{
             $result ["data"] = $this->MasterDataService->loadBatchTicket($request->controlno);
+
+            $this->TicketController->printTicket('asdasds');
 
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
