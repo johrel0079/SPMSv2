@@ -15,6 +15,7 @@ class CreatePartsForDrsTable extends Migration
     {
         Schema::create('parts_for_drs', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('control_number');
             $table->timestamps();
         });
