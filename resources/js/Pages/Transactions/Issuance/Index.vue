@@ -53,19 +53,23 @@ export default
                 label: 'With Ticket'
             },
             {
-                key: 'control_no',
+                label: 'Control No',
+                key: 'order_download_no',
                 sortable: true
             },
             {
-                key: 'delivery_date',
+                label: 'Delivery Date',
+                key: 'delivery_inst_date',
                 sortable: true
             },
             {
-                key: 'destination',
+                label: 'Destination',
+                key: 'destination_code',
                 sortable: true
             },
             {
-                key: 'issuance_date',
+                label: 'Issuance Date',
+                key: 'ticket_issue_date',
                 sortable: true
             },
             ],

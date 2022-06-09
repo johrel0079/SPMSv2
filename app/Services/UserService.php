@@ -37,5 +37,8 @@ Class UserService
     {
        return $this->UserRepository->updateorcreate($data);
     }
+    public function loadPicker(){
+      return $this->UserRepository->loadPicker();
+    }
 
 }

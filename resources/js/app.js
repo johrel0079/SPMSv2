@@ -23,6 +23,18 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Vuex);
 
+// import "../src/template/assets/sass/views/custom-tabs.scss";
+// import "../src/template/assets/sass/views/custom-cards.scss";
+// import VuePapaParse from 'vue-papa-parse'
+// import VueConfirmDialog from 'vue-confirm-dialog'
+// import ToggleButton from "vue-js-toggle-button";
+// import Multiselect from 'vue-multiselect';
+// import "vue-multiselect/dist/vue-multiselect.min.css";
+// import VueMask from 'v-mask'
+// import SearchTemplate from "./views/ReUsables/SearchTemplate.vue";
+import Multiselect from 'vue-multiselect';
+import "vue-multiselect/dist/vue-multiselect.min.css";
+Vue.component('multiselect', Multiselect)
 import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";

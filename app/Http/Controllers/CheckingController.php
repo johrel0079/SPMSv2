@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Distribution;
+use App\Models\Checking;
 use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
-use App\Services\DistributionService;
+use App\Services\CheckingService;
 use Auth;
-class DistributionController extends Controller
+
+class CheckingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +19,11 @@ class DistributionController extends Controller
 
     public function __construct()
     {
-        $this->DistributionService = new DistributionService();
+        $this->CheckingService = new CheckingService();
     }
-
     public function index()
     {
-        $result = $this->successResponse("Load Successfully");
-
-        try{
-            $result ['data'] = $this->DistributionService->loadDistribution();
-        }catch(\Exception $e){
-            $result = $this->errorResponse($e);
-        }
-
-        return $this->returnResponse($result);
+        //
     }
 
     /**
@@ -52,16 +44,16 @@ class DistributionController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'picker_user_id' => $request->picker_user_id,
-            'master_data_id' => $request->master_data_id,
-            'distributor_user_id' => Auth::id()
-        ];
-
         $result = $this->successResponse("Inserted Successfully");
 
         try{
-            $result ['data'] = $this->DistributionService->create($data);
+            $data = [
+                'user_id' => Auth::id(),
+                'master_data_id' => $request->master_data_id
+            ];
+
+            $result ['data'] = $this->CheckingService->create($data);
+            
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
         }
@@ -72,16 +64,15 @@ class DistributionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Distribution  $distribution
+     * @param  \App\Models\Checking  $checking
      * @return \Illuminate\Http\Response
      */
     public function show($ticket_no)
     {
-
         $result = $this->successResponse("Load Successfully");
 
         try{
-            $result ['data'] = $this->DistributionService->showDistribution($ticket_no);
+            $result ['data'] = $this->CheckingService->showChecking($ticket_no);
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
         }
@@ -92,10 +83,10 @@ class DistributionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Distribution  $distribution
+     * @param  \App\Models\Checking  $checking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Distribution $distribution)
+    public function edit(Checking $checking)
     {
         //
     }
@@ -104,10 +95,10 @@ class DistributionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Distribution  $distribution
+     * @param  \App\Models\Checking  $checking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Distribution $distribution)
+    public function update(Request $request, Checking $checking)
     {
         //
     }
@@ -115,10 +106,10 @@ class DistributionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Distribution  $distribution
+     * @param  \App\Models\Checking  $checking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Distribution $distribution)
+    public function destroy(Checking $checking)
     {
         //
     }

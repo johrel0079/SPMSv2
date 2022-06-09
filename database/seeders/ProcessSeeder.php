@@ -14,7 +14,7 @@ class ProcessSeeder extends Seeder
     public function run()
     {
         $process = [
-            'for-isuance', 'for-picking', 'for-checking','for-delivery','for-receiving','irregularity'
+            'for-isuance', 'for-distribution', 'for-picking','for-checking','for-dr','for-delivery'
           ];
   
           for($i=0; $i<count($process); $i++){

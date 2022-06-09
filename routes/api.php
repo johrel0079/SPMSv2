@@ -11,6 +11,8 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\IssuanceController;
 use App\Http\Controllers\DistributionController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PickingController;
+use App\Http\Controllers\CheckingController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,13 +44,18 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::resource('/issuance',IssuanceController::class);
 
     Route::resource('/distribution', DistributionController::class);
-    
+    Route::get('/load-picker',[UserController::class,'loadPicker']);
   
     Route::get('/load-user',[UserController::class,'index']);
+    Route::resource('/picking', PickingController::class);
+    Route::resource('/checking', CheckingController::class);
+  
 });
 
 Route::get('/print-ticket',[TicketController::class,'printTicket']);
 Route::get('/print-dr',[TicketController::class,'printDR']);
+
+
 
 
 

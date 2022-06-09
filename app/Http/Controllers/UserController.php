@@ -143,6 +143,17 @@ class UserController extends Controller
         }
         return $this->returnResponse($result);
     }
+
+    public function loadPicker(){
+        try {
+            $result = $this->successResponse('All details successfully loaded!');
+            // $this->user::all();
+            $result['data'] = $this->UserService->loadPicker();
+        } catch (\Exception $th) {
+            $result = $this->errorResponse($th);
+        }
+        return $this->returnResponse($result);
+    }
     // public function updateorcreate(Request $request)
     // {
     //     $validator = Validator::make($request->all(), [

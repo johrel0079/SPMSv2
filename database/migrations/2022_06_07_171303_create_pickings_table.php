@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistributionsTable extends Migration
+class CreatePickingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateDistributionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('distributions', function (Blueprint $table) {
+        Schema::create('pickings', function (Blueprint $table) {
             $table->id();
-            $table->integer('picker_user_id');
+            $table->integer('user_id');
             $table->integer('master_data_id');
-            $table->integer('distributor_user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +29,6 @@ class CreateDistributionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distributions');
+        Schema::dropIfExists('pickings');
     }
 }

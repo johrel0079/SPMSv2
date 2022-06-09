@@ -66,7 +66,7 @@
             <b-dropdown-item>
               Destination
             </b-dropdown-item>
-             <b-dropdown-item>
+             <b-dropdown-item @click="user()">
               User
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -103,26 +103,29 @@ export default {
       areaCode(){
         this.$router.push({name: 'area-code'});
       },
+      user(){
+        this.$router.push({name: 'user'});
+      },
       masterData(){
-        this.$router.push({name: 'monitoring/master-data'});
+        this.$router.push({name: 'monitoring-master-data'});
       },
       ticketIssuance(){
-        this.$router.push({name: 'transactions/ticket-issuance'});
+        this.$router.push({name: 'transactions-ticket-issuance'});
       },
       distribution(){
-        this.$router.push({name: 'transactions/distribution'});
+        this.$router.push({name: 'transactions-distribution'});
       },
       picking(){
-        this.$router.push({name: 'transactions/picking'});
+        this.$router.push({name: 'transactions-picking'});
       },
       checkingAndPalletizing(){
-        this.$router.push({name: 'transactions/checking-and-palletizing'});
+        this.$router.push({name: 'transactions-checking-and-palletizing'});
       },
       partsForDR(){
-        this.$router.push({name: 'transactions/parts-for-dr'});
+        this.$router.push({name: 'transactions-parts-for-dr'});
       },
       updateDelivery(){
-        this.$router.push({name: 'transactions/update-delivery'});
+        this.$router.push({name: 'transactions-update-delivery'});
       },
     }
 }
