@@ -16,13 +16,7 @@ class PickingService{
     public function showPicking($ticket_no)
     {
         $user_id = Auth::id();
-        $role_id = Auth::user()->role_id;
-        if($role_id == 1){
-            return $this->MasterDataRepository->showTicket(3,$ticket_no);
-        }else{
-            return $this->PickingRepository->showPicking($user_id,$ticket_no);
-        }
-        
+        return $this->PickingRepository->showPicking($user_id,$ticket_no);
     }
 
     public function create($data)

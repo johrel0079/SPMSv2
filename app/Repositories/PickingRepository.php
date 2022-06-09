@@ -19,12 +19,17 @@ class PickingRepository
     public function showPicking($user_id, $ticket_no)
     {
         return $this->MasterData
-        ->selectRaw('master_data.id as master_data_id, master_data.*, users.*',)
+        ->selectRaw('master_data.*,users.id as user_id, users.first_name, users.last_name')
         ->join('distributions', 'distributions.master_data_id', '=', 'master_data.id')
         ->join('users', 'users.id', '=', 'distributions.picker_user_id')
         ->where('master_data.process_masterlist_id','=',3)
         ->where('master_data.ticket_no','=', $ticket_no)
         ->where('distributions.picker_user_id','=', $user_id)
+        ->orwhere(function ($query) use ($ticket_no){
+            $query->where('master_data.process_masterlist_id','=',3)
+                  ->where('master_data.ticket_no','=', $ticket_no)
+                  ->orWhere('users.role_id', '=', 1);
+        })
         ->get();
     }
 
