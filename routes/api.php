@@ -51,9 +51,10 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 
     Route::resource('/checking', CheckingController::class);
     Route::resource('/picking', PickingController::class);
+    Route::resource('/parts-for-dr', PartsForDrController::class);
   
 });
-Route::resource('/parts-for-dr', PartsForDrController::class);
+
 
 
 Route::get('/print-ticket',[TicketController::class,'printTicket']);
