@@ -18,6 +18,7 @@
                         :action_dropdown="true"
                         :is_search="true"
                         :is_select= "true"
+                        @selectData="getSelected"
                         >
                     </table-component>
                 </b-card>
@@ -25,6 +26,7 @@
                 <b-row class="mt-3">
                     <b-col>
                         <b-button
+                            @click="submitFinish()"
                             style="float:right"
                             variant="primary"
                             class="mt-1"
@@ -66,6 +68,7 @@ export default
             ],
             parts_for_dr_list: [],
             perPage: 10,
+            selected_list: [],
         };
        
     },
@@ -95,6 +98,31 @@ export default
                 .finally(() => {
                 });
         },
+        getSelected(value){
+            this.selected_list=value;
+            console.log(this.selected_list);
+        },
+        submitFinish()
+       {
+            let select_id = [];
+           this.selected_list.forEach(selected => {
+               select_id.push(selected.control_number);
+           });
+        //    
+           let data = {
+               control_number : select_id
+           }
+           this.$http.post('api/parts-for-dr', data)
+                .then((response) => {
+                    console.log(response);
+                    this.$toast.success(response.data.data);
+                    this.getList();
+                }).catch((response) => {
+                    this.$toast.error('Something went wrong');
+                    console.log(response);
+                })
+       }
+
     }
 }
 </script>
