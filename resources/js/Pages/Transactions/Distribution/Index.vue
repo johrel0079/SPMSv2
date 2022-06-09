@@ -43,8 +43,8 @@
                         :flag="'distribution'"
                         :fields="fields"
                         :items="distribution_list"
-                        :perPage="10"
-                        :rows="5"
+                        :perPage="perPage"
+                        :rows="rows"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
@@ -135,8 +135,19 @@ export default
             distribution_list: [],
             picker_options: [],
             ticket_count: 0,
+            //pagination
+            perPage: 10,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.distribution_list){
+                return 1;
+            } else {
+                return this.distribution_list.length;
+            }
+        }
     },
     mounted(){
        this.getPicker();

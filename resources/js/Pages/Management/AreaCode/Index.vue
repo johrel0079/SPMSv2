@@ -33,30 +33,22 @@
                       </b-row>
 
                     <b-card class="mt-3">
-
-                            <h6>List of Area Code</h6>
-                                <table-component    
-                                    :fields="fields"
-                                    :items="area_code_list"
-                                    :perPage="10"
-                                    :rows="5"
-                                    :status="''"
-                                    :action_dropdown="true"
-                                    :is_search="true"
-                                    :flag="'area_code'"
-                                    :is_select= "false"
-                                    @emittedId="getAreaId">
-                                    </table-component>
-                 
+                        <h6>List of Area Code</h6>
+                        <table-component    
+                            :fields="fields"
+                            :items="area_code_list"
+                            :perPage="perPage"
+                            :rows="rows"
+                            :status="''"
+                            :action_dropdown="true"
+                            :is_search="true"
+                            :flag="'area_code'"
+                            :is_select= "false"
+                            @emittedId="getAreaId">
+                        </table-component>
                     </b-card>
-                 
-            
             </div>
-    </div>
-
-
-           
-      
+    </div>    
 </div>
 </div>
 
@@ -86,9 +78,20 @@ export default
             ],
             area_code_list: [],
             id: null,
-            button_name: 'Save'
+            button_name: 'Save',
+            //pagination
+            perPage: 5,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.area_code_list){
+                return 1;
+            } else {
+                return this.area_code_list.length;
+            }
+        }
     },
     mounted(){
         this.$_areaCodeMixin_getList();

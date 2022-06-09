@@ -44,7 +44,7 @@
                 </b-row>   -->
 
                 <b-row class="mt-3">
-                    <b-col cols="1">
+                    <b-col cols="2">
                         <label for="barcode">Barcode:</label>
                     </b-col>
                     <b-col cols="3">
@@ -63,8 +63,8 @@
                         :stickyColumn="true"
                         :fields="fields"
                         :items="picking_list"
-                        :perPage="10"
-                        :rows="5"
+                        :perPage="perPage"
+                        :rows="rows"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
@@ -131,8 +131,19 @@ export default
             picking_list: [],
             barcode: '',
             finish_count: 0,
+            //pagination
+            perPage: 10,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.picking_list){
+                return 1;
+            } else {
+                return this.picking_list.length;
+            }
+        }
     },
     mounted(){
        

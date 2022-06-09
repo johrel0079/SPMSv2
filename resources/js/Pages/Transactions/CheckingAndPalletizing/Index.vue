@@ -6,7 +6,7 @@
             <div class="container px-3">
                 <h5 class="mt-3">Checking and Palletizing</h5>   
                 <b-row class="mt-3">
-                    <b-col cols="1">
+                    <b-col cols="2">
                         <label for="barcode">Barcode:</label>
                     </b-col>
                     <b-col cols="3">
@@ -25,8 +25,8 @@
                         :stickyColumn="true"
                         :fields="fields"
                         :items="checking_list"
-                        :perPage="10"
-                        :rows="5"
+                        :perPage="perPage"
+                        :rows="rows"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
@@ -86,9 +86,18 @@ export default
             // },
             ],
             checking_list: [],
-            
+            //pagination
+            perPage: 10,
         };
-       
+    },
+    computed:{
+        rows(){
+            if(!this.checking_list){
+                return 1;
+            } else {
+                return this.checking_list.length;
+            }
+        }
     },
     mounted(){
        

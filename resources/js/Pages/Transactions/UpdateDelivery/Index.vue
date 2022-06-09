@@ -23,8 +23,8 @@
                         :stickyColumn="true"
                         :fields="fields"
                         :items="update_delivery_list"
-                        :perPage="10"
-                        :rows="5"
+                        :perPage="perPage"
+                        :rows="rows"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
@@ -76,8 +76,19 @@ export default
             },
             ],
             update_delivery_list: [],
+            //pagination
+            perPage: 10,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.update_delivery_list){
+                return 1;
+            } else {
+                return this.update_delivery_list.length;
+            }
+        }
     },
     mounted(){
        

@@ -26,8 +26,8 @@
                         :flag="'issuance'"
                         :fields="fields"
                         :items="issuance_list"
-                        :perPage="10"
-                        :rows="5"
+                        :perPage="perPage"
+                        :rows="rows"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
@@ -74,9 +74,20 @@ export default
             },
             ],
             issuance_list: [],
-            selected_list: []
+            selected_list: [],
+            //pagination
+            perPage: 10,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.issuance_list){
+                return 1;
+            } else {
+                return this.issuance_list.length;
+            }
+        }
     },
     mounted(){
     this.getList();

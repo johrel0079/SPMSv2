@@ -32,28 +32,20 @@
                                 </b-row>
                             </b-col>
                         </b-form>
-                      </b-row>
-
-                    <!-- <b-card class="mt-3"> -->
-
-                            <!-- <h6>List of Area Code</h6> -->
-                                <table-component    
-                                    :stickyColumn="true"
-                                    :fields="fields"
-                                    :items="master_data_list"
-                                    :perPage="10"
-                                    :rows="5"
-                                    :status="''"
-                                    :action_dropdown="true"
-                                    :is_search="true"
-                                    :flag="'master_data'"
-                                    :is_select= "false"
-                                    >
-                                    </table-component>
-                 
-                    <!-- </b-card> -->
-                 
-            
+                    </b-row>
+                    <table-component    
+                        :stickyColumn="true"
+                        :fields="fields"
+                        :items="master_data_list"
+                        :perPage="perPage"
+                        :rows="rows"
+                        :status="''"
+                        :action_dropdown="true"
+                        :is_search="true"
+                        :flag="'master_data'"
+                        :is_select= "false"
+                        >
+                    </table-component> 
             </div>
     </div>
 
@@ -139,8 +131,19 @@ export default
             ],
             id: 0,
             is_loading: false,
+            //pagination
+            perPage: 10,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.master_data_list){
+                return 1;
+            } else {
+                return this.master_data_list.length;
+            }
+        }
     },
     mounted(){
         this.getList();

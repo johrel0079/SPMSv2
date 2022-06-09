@@ -28,8 +28,8 @@
                         :stickyColumn="true"
                         :fields="fields"
                         :items="parts_for_dr_list"
-                        :perPage="10"
-                        :rows="5"
+                        :perPage="perPage"
+                        :rows="rows"
                         :status="''"
                         :action_dropdown="true"
                         :is_search="true"
@@ -86,8 +86,19 @@ export default
             },
             ],
             parts_for_dr_list: [],
+            //pagination
+            perPage: 10,
         };
        
+    },
+    computed:{
+        rows(){
+            if(!this.parts_for_dr_list){
+                return 1;
+            } else {
+                return this.parts_for_dr_list.length;
+            }
+        }
     },
     mounted(){
        

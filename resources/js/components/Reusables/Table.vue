@@ -67,6 +67,12 @@
         <button class="btn btn-danger btn-sm  "><b-icon icon="trash-fill"></b-icon> </button>
       </template>
     </b-table>
+    <b-pagination
+      align="right"
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage">
+    </b-pagination>
     <div
       v-if="items.length==0"
       class="text-center text-muted"
