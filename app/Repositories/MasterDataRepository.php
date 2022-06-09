@@ -34,7 +34,6 @@ class MasterDataRepository
     public function showTicket($process_masterlist_id, $ticket_no)
     {
         return $this->MasterData
-            ->distinct('order_download_no')
             ->selectRaw('*')
             ->where('process_masterlist_id', $process_masterlist_id)
             ->where('ticket_no', $ticket_no)
