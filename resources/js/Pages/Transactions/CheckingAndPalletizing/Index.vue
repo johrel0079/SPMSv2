@@ -159,7 +159,7 @@ export default
                 .then((response) => {
                     console.log(response)
                     this.$toast.success(response.data.message);
-                    // this.checking_list = [];
+                    this.checking_list = [];
                 }).catch((response) => {
                     console.log(response);
                 })

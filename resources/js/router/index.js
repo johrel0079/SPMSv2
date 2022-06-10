@@ -15,6 +15,7 @@ import PartsForDR from "../Pages/Transactions/PartsForDR/Index"
 import UpdateDelivery from "../Pages/Transactions/UpdateDelivery/Index"
 import ReprintPickingTicket from "../Pages/Reprint/PickingTicket/Index"
 import ReprintDeliveryReceipt from "../Pages/Reprint/DeliveryReceipt/Index"
+import MonitoringReport from "../Pages/Monitoring/MonitoringReport/Index"
 
 Vue.use(VueRouter);
 
@@ -132,6 +133,15 @@ const routes = [{
         component: ReprintDeliveryReceipt,
         meta: {
             title: 'Reprint Delivery Receipt',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/monitoring/report",
+        name: 'monitoring-report',
+        component: MonitoringReport,
+        meta: {
+            title: 'Monitoring Report',
             requiredAuth: true
         }
     },

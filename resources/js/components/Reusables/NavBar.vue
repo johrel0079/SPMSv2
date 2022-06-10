@@ -28,6 +28,9 @@
             <b-dropdown-item @click="masterData()">
               Masterdata
             </b-dropdown-item>
+            <b-dropdown-item @click="monitoringReport()">
+              Monitoring Report
+            </b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown
@@ -148,6 +151,9 @@ export default {
       },
       dashboard(){
         this.$router.push({name: 'dashboard'});
+      },
+      monitoringReport(){
+        this.$router.push({name: 'monitoring-report'});
       }
     }
 }
