@@ -128,7 +128,30 @@ export default
            this.$http.post('api/issuance', data)
                 .then((response) => {
                     console.log(response);
+                    this.printPdf();
                     this.getList();
+                    this.selected_list =[];
+                }).catch((response) => {
+                    console.log(response);
+                })
+       },
+       printPdf(){
+           this.$http.get('api/print-ticket', {
+                params:
+                ({
+                    data:  JSON.stringify(this.selected_list),
+                }),
+                responseType: 'blob', Accept: 'application/pdf',
+            })
+                .then((response) => {
+                    console.log(response)
+                    const file = new Blob(
+                        [response.data],
+                        { type: 'application/pdf' });
+                    const fileURL = URL.createObjectURL(file);
+                    // $('.loader').hide();
+                    window.open(fileURL);  
+
                 }).catch((response) => {
                     console.log(response);
                 })
