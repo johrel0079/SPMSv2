@@ -14,10 +14,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'employee_number'  => 123,
-            'password'      => bcrypt('123'),
-            'first_name'    => 'Edra',
-            'last_name'     => 'Afelo',
+            'employee_number'  => 'Fp143',
+            'password'      => bcrypt('Fp143'),
+            'first_name'    => 'Jeanel',
+            'last_name'     => 'Tadakifa',
             'middle_name'   => 'Flores',
             'position'      => 'Admin',
             'email'         => 'Admin@email.com',
@@ -25,10 +25,10 @@ class UserSeeder extends Seeder
             'role_id'       => 1
         ]);
         User::create([
-            'employee_number'  => 124,
+            'employee_number'  => 12345,
             'password'      => bcrypt('123'),
-            'first_name'    => 'Name 1',
-            'last_name'     => 'Lastname',
+            'first_name'    => 'Kath',
+            'last_name'     => 'Cabudsan',
             'middle_name'   => 'Middlename',
             'position'      => 'Guess',
             'email'         => 'Guess1@email.com',

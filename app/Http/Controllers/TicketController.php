@@ -14,9 +14,9 @@ class TicketController extends Controller
       return $pdf->stream();
     }
 
-    public function printDR()
+    public function printDR(Request $request)
     {
-      $pdf = PDF::loadView('PDF.delivery_receipt')->setPaper('A4', 'portrait');
+      $pdf = PDF::loadView('PDF.delivery_receipt', ['data' => json_decode($request->data)])->setPaper('A4', 'portrait');
       $fileName = 'DeliveryTicket';
       return $pdf->stream();
     }
