@@ -14,6 +14,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PickingController;
 use App\Http\Controllers\CheckingController;
 use App\Http\Controllers\PartsForDrController;
+use App\Http\Controllers\UpdateDeliveryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::resource('/checking', CheckingController::class);
     Route::resource('/picking', PickingController::class);
     Route::resource('/parts-for-dr', PartsForDrController::class);
+    Route::resource('/update-delivery', UpdateDeliveryController::class);
   
 });
 
