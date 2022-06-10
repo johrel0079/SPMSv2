@@ -89,6 +89,7 @@
       </template>
     </b-table>
     <b-pagination
+      v-if="items.length!=0"
       align="right"
       v-model="currentPage"
       :total-rows="rows"
