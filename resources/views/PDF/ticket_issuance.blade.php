@@ -93,7 +93,7 @@
                 padding-bottom: 15px;
             }
             .breakdown{
-                padding-bottom: 250px;
+                padding-bottom: 200px;
             }
             .barcode {
                 font-family: 'sbarc39v';
@@ -108,35 +108,41 @@
             page-break-after: auto;
             } */
         </style>
-    </head>  
+    </head> 
+   
     <body>
+    
+    
+   
         <table style="width:100%">
+        @foreach($data as $row) 
+   
             <tr>
               <th colspan="4">PICKING TICKET</th>
             </tr>
             <tr>
               <td> PART NUMBER </td>
-              <td> - </td>
+              <td> {{$row->item_no}} </td>
               <td> REV: </td>
-              <td> - </td>
-            </tr>
+              <td> {{$row->item_rev}} </td>
+            </tr>   
             <tr>
               <td> PART ITEM NAME: </td>
-              <td> - </td>
+              <td> {{$row->item_name}} </td>
               <td> PAYEE CODE: </td>
-              <td> - </td>
+              <td> {{$row->destination_code}} </td>
             </tr>
             <tr>
                 <td> DELIVERY QTY: </td>
-                <td> - </td>
+                <td> {{$row->delivery_qty}} </td>
                 <td> MANUF NO: </td>
-                <td> - </td>
+                <td> {{$row->manufacturing_no}} </td>
             </tr>
             <tr>
                 <td> ADDRESS: </td>
-                <td> - </td>
+                <td> {{$row->stock_address}} </td>
                 <td> ORDER DOWNLOAD NO: </td>
-                <td> - </td>
+                <td> {{$row->order_download_no}} </td>
             </tr>
             <tr>
                 <td> PAYEECD NAME: </td>
@@ -146,28 +152,28 @@
             </tr>
             <tr>
                 <td> WAREHOUSE DATE: </td>
-                <td> - </td>
+                <td> {{$row->delivery_due_date}} </td>
                 <td> PRODUCT NO: </td>
-                <td> - </td>
+                <td> {{$row->product_no}} </td>
             </tr>
             <tr>
                 <td> BIN: </td>
-                <td> - </td>
+                <td> {{$row->warehouse_class}} </td>
                 <td> ISSUE DATE: </td>
-                <td> - </td>
+                <td> {{$row->ticket_issue_date}} </td>
             </tr>
             <tr>
                 <td> NAME: </td>
                 <td> DATE: </td>
                 <td> STORE LOC: </td>
-                <td> - </td>
+                <td> {{$row->storage_location }}</td>
             </tr>
             <tr>
                 <td colspan="2" class="breakdown">BREAKDOWN:</td>
                 <td colspan="2" class="breakdown"></td>
             </tr>
             <tr>
-               <td colspan="4" class="barcode">BARCODE</td> 
+               <td colspan="4" class="barcode">{{$row->ticket_no}}</td> 
             </tr>
             <tr>
                 <td colspan="4" class="padding-top:50px;">
@@ -207,6 +213,9 @@
                     </table>
                 </td>
             </tr>
+            @endforeach
           </table>
+    
     </body> 
+  
 </html>
