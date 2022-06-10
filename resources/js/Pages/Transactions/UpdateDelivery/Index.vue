@@ -29,7 +29,7 @@
                         :rows="rows"
                         :status="''"
                         :action_dropdown="true"
-                        :is_search="true"
+                        :is_search="false"
                         :is_select= "false"
                         >
                     </table-component>
@@ -37,6 +37,7 @@
                 <b-row class="mt-3">
                     <b-col>
                         <b-button
+                            @click="submitFinish()"
                             style="float:right"
                             variant="primary"
                             class="mt-1"
@@ -60,10 +61,6 @@ export default
         return {
             dr_control: '',
             fields: [
-            {
-                key: 'select',
-                sortable: true
-            },
             {
                 key: 'control_number',
                 sortable: true
@@ -124,7 +121,31 @@ export default
                 this.$toast.warning("Item already exist");
                 this.barcode = '';
             }
-       }   
+       }, 
+        submitFinish()
+       {
+            if(!this.update_delivery_list){
+                this.$toast.warning("Barcode is required");
+            }else{
+                let control_no = [];
+                this.update_delivery_list.forEach(selected => {
+                    control_no.push(selected.control_number);
+                });
+         
+                let data = {
+                    control_number : control_no,
+                }
+                this.$http.post('api/update-delivery', data)
+                .then((response) => {
+                    console.log(response)
+                    this.$toast.success(response.data.message);
+                    this.update_delivery_list = [];
+                }).catch((response) => {
+                    console.log(response);
+                })
+
+            }
+       }
     }
 }
 </script>
