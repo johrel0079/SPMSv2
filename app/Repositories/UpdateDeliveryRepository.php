@@ -13,7 +13,7 @@ class UpdateDeliveryRepository
     {
         $this->Checking = new Checking();
         $this->MasterData = new MasterData();
-        $this->Distribution = new UpdateDelivery();
+        $this->UpdateDelivery = new UpdateDelivery();
     }
 
     public function show($control_number)
@@ -29,10 +29,10 @@ class UpdateDeliveryRepository
         
     }
 
-    // public function create($data)
-    // {
-    //     return $this->Picking->insert($data);
-    // }
+    public function create($data)
+    {
+        return $this->UpdateDelivery->insert($data);
+    }
 
 
 }

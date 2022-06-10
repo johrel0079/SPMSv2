@@ -31,7 +31,7 @@ class PartsForDrService{
             // 
         }
        
-        $this->CheckingRepository->getDataPerControlNo($data['control_number'],5);
+        $this->CheckingRepository->updateProcessMasterlistPerControl($data['control_number'],5);
 
         return $this->PartsForDrRepository->create($new_data);
     }

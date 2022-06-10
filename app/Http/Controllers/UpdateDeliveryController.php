@@ -43,7 +43,15 @@ class UpdateDeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->successResponse("Inserted Successfully");
+
+        try{
+            $result ['data'] = $this->UpdateDeliveryService->create($request->toArray());
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
