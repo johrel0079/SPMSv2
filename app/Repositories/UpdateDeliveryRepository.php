@@ -36,12 +36,12 @@ class UpdateDeliveryRepository
 
     public function monitoring(){
         $this->MasterData
-        ->join('issuances' ,'master_data.id', '=', 'issuances.master_data_id')
-        ->join('distributions' ,'master_data.id', '=', 'distributions.master_data_id')
-        ->join('checkings' ,'master_data.id', '=', 'checkings.master_data_id')
-        ->join('parts_for_drs' ,'parts_for_drs.control_number', '=', 'checkings.control_number')  
-        ->join('update_deliveries' ,'update_deliveries.control_number', '=', 'checkings.control_number')
-        ->selectRaw('master_data.*, issuances.created_at as issuance_date, distributions.created_at as distribution_data, checkings.created_at as checking_date,parts_for_drs.created_at as parts_for_dr_date,update_deliveries.created_at as update_delivery_date ')  
+        ->leftJoin('issuances' ,'master_data.id', '=', 'issuances.master_data_id')
+        ->leftJoin('distributions' ,'master_data.id', '=', 'distributions.master_data_id')
+        ->leftJoin('checkings' ,'master_data.id', '=', 'checkings.master_data_id')
+        ->leftJoin('parts_for_drs' ,'parts_for_drs.control_number', '=', 'checkings.control_number')  
+        ->leftJoin('update_deliveries' ,'update_deliveries.control_number', '=', 'checkings.control_number')
+        ->selectRaw('master_data.*, issuances.created_at as issuance_date, distributions.created_at as distribution_data, checkings.created_at as checking_date,parts_for_drs.created_at as parts_for_dr_date,update_deliveries.created_at as update_delivery_date')  
         ->get();
     }
     public function updateProcessMasterlistId($control_number,$process_masterlist_idr){
