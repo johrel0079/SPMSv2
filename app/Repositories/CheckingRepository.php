@@ -25,4 +25,10 @@ class CheckingRepository
                     ->latest()->first();
     }
 
+    public function updateProcessMasterlistPerControl($control_no, $process_id){
+        return $this->MasterData
+                    ->join('checkings', 'checkings.master_data_id', '=', "master_data.id")
+                    ->whereIn('checkings.control_number', $control_no)
+                    ->update(['master_data.process_masterlist_id' => $process_id]);
+    }
 }
