@@ -115,10 +115,33 @@ export default
            this.$http.post('api/parts-for-dr', data)
                 .then((response) => {
                     console.log(response);
-                    this.$toast.success(response.data.data);
+                    this.$toast.success(response.data.message);
+                    this.printPdf(response.data.data);
                     this.getList();
+                    
                 }).catch((response) => {
                     this.$toast.error('Something went wrong');
+                    console.log(response);
+                })
+       },
+       printPdf(data){
+           this.$http.get('api/print-dr', {
+                params:
+                ({
+                    data:  JSON.stringify(data),
+                }),
+                responseType: 'blob', Accept: 'application/pdf',
+            })
+                .then((response) => {
+                    console.log(response)
+                    const file = new Blob(
+                        [response.data],
+                        { type: 'application/pdf' });
+                    const fileURL = URL.createObjectURL(file);
+                    // $('.loader').hide();
+                    window.open(fileURL);  
+
+                }).catch((response) => {
                     console.log(response);
                 })
        }
