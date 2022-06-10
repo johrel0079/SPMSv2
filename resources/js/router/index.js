@@ -13,6 +13,8 @@ import Picking from "../Pages/Transactions/Picking/Index"
 import CheckingAndPalletizing from "../Pages/Transactions/CheckingAndPalletizing/Index"
 import PartsForDR from "../Pages/Transactions/PartsForDR/Index"
 import UpdateDelivery from "../Pages/Transactions/UpdateDelivery/Index"
+import ReprintPickingTicket from "../Pages/Reprint/PickingTicket/Index"
+import ReprintDeliveryReceipt from "../Pages/Reprint/DeliveryReceipt/Index"
 
 
 Vue.use(VueRouter);
@@ -113,6 +115,24 @@ const routes = [{
         component: UpdateDelivery,
         meta: {
             title: 'Update Delivery',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/reprint-picking-ticket",
+        name: 'reprint-picking-ticket',
+        component: ReprintPickingTicket,
+        meta: {
+            title: 'Reprint Delivery Receipt',
+            requiredAuth: true
+        }
+    },
+    {
+        path: "/reprint-delivery-receipt",
+        name: 'reprint-delivery-receipt',
+        component: ReprintDeliveryReceipt,
+        meta: {
+            title: 'Reprint Delivery Receipt',
             requiredAuth: true
         }
     },

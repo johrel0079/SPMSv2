@@ -32,6 +32,19 @@
 
           <b-nav-item-dropdown
           class="mr-3"
+            text="Reprint Document"
+            right
+          >
+            <b-dropdown-item @click="reprintPickingTicket()">
+              Picking Ticket
+            </b-dropdown-item>
+            <b-dropdown-item @click="reprintDeliveryReceipt()">
+              Delivery Receipt
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+
+          <b-nav-item-dropdown
+          class="mr-3"
             text="Transactions"
             right
           >
@@ -127,6 +140,12 @@ export default {
       updateDelivery(){
         this.$router.push({name: 'transactions-update-delivery'});
       },
+      reprintPickingTicket(){
+        this.$router.push({name: 'reprint-picking-ticket'});
+      },
+      reprintDeliveryReceipt(){
+        this.$router.push({name: 'reprint-delivery-receipt'});
+      }
     }
 }
 </script>
