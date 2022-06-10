@@ -17,7 +17,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav>
-          <b-nav-item class="mr-3">
+          <b-nav-item class="mr-3"  @click="dashboard()">
             Dashboard
           </b-nav-item>
 
@@ -145,6 +145,9 @@ export default {
       },
       reprintDeliveryReceipt(){
         this.$router.push({name: 'reprint-delivery-receipt'});
+      },
+      dashboard(){
+        this.$router.push({name: 'dashboard'});
       }
     }
 }

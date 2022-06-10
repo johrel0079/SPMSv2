@@ -37,6 +37,7 @@
         "vuex": "^3.6.2"
     },
     "dependencies": {
+        "vue-chart-js": "^1.4.1",
         "vue-multiselect": "^2.1.6"
     }
 }

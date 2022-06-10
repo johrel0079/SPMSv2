@@ -16,7 +16,6 @@ import UpdateDelivery from "../Pages/Transactions/UpdateDelivery/Index"
 import ReprintPickingTicket from "../Pages/Reprint/PickingTicket/Index"
 import ReprintDeliveryReceipt from "../Pages/Reprint/DeliveryReceipt/Index"
 
-
 Vue.use(VueRouter);
 
 const routes = [{
