@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePartsForDrsTable extends Migration
+class CreateUpdateDeliveriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePartsForDrsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parts_for_drs', function (Blueprint $table) {
+        Schema::create('update_deliveries', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('control_number');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class CreatePartsForDrsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parts_for_drs');
+        Schema::dropIfExists('update_deliveries');
     }
 }

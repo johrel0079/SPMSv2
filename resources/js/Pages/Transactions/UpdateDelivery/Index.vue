@@ -11,6 +11,7 @@
                     </b-col>
                     <b-col cols="3">
                         <b-form-input
+                            @keyup.enter="submitBarcode(dr_control)"
                             id="dr-control"
                             v-model="dr_control"
                             placeholder="DR Control"
@@ -20,6 +21,7 @@
                 </b-row>
                 <b-card class="mt-3">
                     <table-component    
+                        :flag="'update-delivery'"
                         :stickyColumn="true"
                         :fields="fields"
                         :items="update_delivery_list"
@@ -27,7 +29,7 @@
                         :rows="rows"
                         :status="''"
                         :action_dropdown="true"
-                        :is_search="true"
+                        :is_search="false"
                         :is_select= "false"
                         >
                     </table-component>
@@ -35,6 +37,7 @@
                 <b-row class="mt-3">
                     <b-col>
                         <b-button
+                            @click="submitFinish()"
                             style="float:right"
                             variant="primary"
                             class="mt-1"
@@ -59,19 +62,15 @@ export default
             dr_control: '',
             fields: [
             {
-                key: 'dr_control',
+                key: 'control_number',
                 sortable: true
             },
             {
-                key: 'normal_status',
+                key: 'ticket_count',
                 sortable: true
             },
             {
-                key: 'irregularity_status',
-                sortable: true
-            },
-            {
-                key: 'item_count',
+                key: 'destination',
                 sortable: true
             },
             ],
@@ -94,7 +93,59 @@ export default
        
     },
     methods: {
-       
+       submitBarcode(dr_control){
+            let is_exist = this.update_delivery_list.findIndex(function(list) {
+                return (list.control_number == dr_control) ?  true : false
+                   
+            });
+
+            if(is_exist){
+                 this.$http.get('api/update-delivery/' + dr_control)
+                .then((response) => {
+                    console.log(response);
+                    if(response.data.data.length!=0){
+                        this.update_delivery_list.push(response.data.data[0]);
+                        this.dr_control = '';
+                    }else{
+                        this.$toast.warning("Item doesn't exist");
+                    }
+                    
+                 })
+                .catch((error) => {
+                    this.$toast.error("Something went wrong");
+                    console.log(error);
+                })
+                .finally(() => {
+                });
+            }else{
+                this.$toast.warning("Item already exist");
+                this.barcode = '';
+            }
+       }, 
+        submitFinish()
+       {
+            if(!this.update_delivery_list){
+                this.$toast.warning("Barcode is required");
+            }else{
+                let control_no = [];
+                this.update_delivery_list.forEach(selected => {
+                    control_no.push(selected.control_number);
+                });
+         
+                let data = {
+                    control_number : control_no,
+                }
+                this.$http.post('api/update-delivery', data)
+                .then((response) => {
+                    console.log(response)
+                    this.$toast.success(response.data.message);
+                    this.update_delivery_list = [];
+                }).catch((response) => {
+                    console.log(response);
+                })
+
+            }
+       }
     }
 }
 </script>

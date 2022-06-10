@@ -2,20 +2,20 @@
 
 namespace App\Services;
 
-use App\Repositories\PartsForDrRepository;
+use App\Repositories\UpdateDeliveryRepository;
 use App\Repositories\CheckingRepository;
 
 use Auth;
 
-class PartsForDrService{
+class UpdateDeliveryService{
 
     public function __construct(){
-        $this->PartsForDrRepository = new PartsForDrRepository();
+        $this->UpdateDeliveryRepository = new UpdateDeliveryRepository();
         $this->CheckingRepository = new CheckingRepository();
     }
 
-    public function index(){
-        return $this->PartsForDrRepository->index();
+    public function show($control_number){
+        return $this->UpdateDeliveryRepository->show($control_number);
     }
 
     public function create($data){
@@ -30,9 +30,9 @@ class PartsForDrService{
 
             // 
         }
-       
-        $this->CheckingRepository->updateProcessMasterlistPerControl($data['control_number'],5);
+   
+        return $this->CheckingRepository->updateProcessMasterlistPerControl($data['control_number'],6);
 
-        return $this->PartsForDrRepository->create($new_data);
+         $this->UpdateDeliveryRepository->create($new_data);
     }
 }

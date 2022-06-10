@@ -2,35 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\PartsForDrService;
+use App\Services\UpdateDeliveryService;
 use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use Auth;
 
-class PartsForDrController extends Controller
+class UpdateDeliveryController extends Controller
 {
     use ResponseTrait;
+
+    public function __construct()
+    {
+        $this->UpdateDeliveryService = new UpdateDeliveryService();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->PartsForDrService = new PartsForDrService();
-    }
     public function index()
     {
-        $result = $this->successResponse("Load Ticket Successfully");
-
-        try{
-            $result ['data'] = $this->PartsForDrService->index();
-            
-        }catch(\Exception $e){
-            $result = $this->errorResponse($e);
-        }
-
-        return $this->returnResponse($result);
+        //
     }
 
     /**
@@ -54,7 +46,7 @@ class PartsForDrController extends Controller
         $result = $this->successResponse("Inserted Successfully");
 
         try{
-            $result ['data'] = $this->PartsForDrService->create($request->toArray());
+            $result ['data'] = $this->UpdateDeliveryService->create($request->toArray());
         }catch(\Exception $e){
             $result = $this->errorResponse($e);
         }
@@ -65,21 +57,29 @@ class PartsForDrController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PartsForDr  $partsForDr
+     * @param  \App\Models\UpdateDelivery  $updateDelivery
      * @return \Illuminate\Http\Response
      */
-    public function show(PartsForDr $partsForDr)
+    public function show($control_number)
     {
-        //
+        $result = $this->successResponse("Load Successfully");
+
+        try{
+            $result ['data'] = $this->UpdateDeliveryService->show($control_number);
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+
+        return $this->returnResponse($result);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PartsForDr  $partsForDr
+     * @param  \App\Models\UpdateDelivery  $updateDelivery
      * @return \Illuminate\Http\Response
      */
-    public function edit(PartsForDr $partsForDr)
+    public function edit(UpdateDelivery $updateDelivery)
     {
         //
     }
@@ -88,10 +88,10 @@ class PartsForDrController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PartsForDr  $partsForDr
+     * @param  \App\Models\UpdateDelivery  $updateDelivery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PartsForDr $partsForDr)
+    public function update(Request $request, UpdateDelivery $updateDelivery)
     {
         //
     }
@@ -99,10 +99,10 @@ class PartsForDrController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PartsForDr  $partsForDr
+     * @param  \App\Models\UpdateDelivery  $updateDelivery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PartsForDr $partsForDr)
+    public function destroy(UpdateDelivery $updateDelivery)
     {
         //
     }
