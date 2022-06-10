@@ -30,10 +30,10 @@ class UpdateDeliveryService{
 
             // 
         }
-   
-        return $this->CheckingRepository->updateProcessMasterlistPerControl($data['control_number'],6);
+        return $this->UpdateDeliveryRepository->create($new_data);
+        $this->UpdateDeliveryRepository->updateProcessMasterlistId($data['control_number'],6);
 
-         $this->UpdateDeliveryRepository->create($new_data);
+         
     }
 
     public function monitoring(){

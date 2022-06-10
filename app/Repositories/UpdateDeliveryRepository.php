@@ -44,6 +44,12 @@ class UpdateDeliveryRepository
         ->selectRaw('master_data.*, issuances.created_at as issuance_date, distributions.created_at as distribution_data, checkings.created_at as checking_date,parts_for_drs.created_at as parts_for_dr_date,update_deliveries.created_at as update_delivery_date ')  
         ->get();
     }
-
+    public function updateProcessMasterlistId($control_number,$process_masterlist_idr){
+        return $this->MasterData
+                ->join('checkings', 'checkings.master_data_id', '=', 'master_data.id')
+                ->join('update_deliveries', 'checkings.control_number', '=', 'update_deliveries.control_number')
+                ->whereIn('checkings.control_no', $control_number)
+                ->update(['process_masterlist_id' => $process_masterlist_id]);
+    }
 
 }
