@@ -106,4 +106,15 @@ class UpdateDeliveryController extends Controller
     {
         //
     }
+
+    public function monitoring(){
+        $result = $this->successResponse("Load Successfully");
+
+        try{
+            $result ['data'] = $this->UpdateDeliveryService->monitoring();
+        }catch(\Exception $e){
+            $result = $this->errorResponse($e);
+        }
+        return $this->returnResponse($result);
+    }
 }

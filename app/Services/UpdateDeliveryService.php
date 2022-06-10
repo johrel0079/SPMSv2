@@ -35,4 +35,8 @@ class UpdateDeliveryService{
 
          $this->UpdateDeliveryRepository->create($new_data);
     }
+
+    public function monitoring(){
+        return $this->UpdateDeliveryRepository->monitoring();
+    }
 }
