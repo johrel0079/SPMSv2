@@ -116,7 +116,7 @@ export default
                     if(response.data.data.length!=0){
                         if(this.checking_list.length!=0){
                             let order_download_no = this.checking_list[0].order_download_no;
-                            if(order_download_no == response.data.data[0].order_download_no){
+                            if(order_download_no != response.data.data[0].order_download_no){
                                 this.$toast.warning("Barcode another ticket.");
                             }else{
                                 this.checking_list.push(response.data.data[0]);
